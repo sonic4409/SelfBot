@@ -1,7 +1,7 @@
 exports.run = (client, msg, date, args, richEmbed, math, forecast, Discord) => {
   forecast
-    .latitude("-32.016426")
-    .longitude("115.8687878")
+    .latitude("-31.9505")
+    .longitude("115.8605")
     .units("ca") //Celsius
     .language("en") //English
     .get()

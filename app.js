@@ -34,11 +34,7 @@ client.on("message", msg => {
     commandFile.run(client, msg, date, args, richEmbed, math, forecast, Discord);
 
   } catch (err) {
-    msg.edit("**Command Not Found!**");
-    setTimeout(() => {
-      msg.delete();
-    }, 2000);
-    //return console.error(err);
+    return console.error(err);
   }
 
 });

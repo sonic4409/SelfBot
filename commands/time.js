@@ -6,5 +6,5 @@ exports.run = (client, msg, date) => {
       name: `The time is ${date}`,
       icon_url: client.user.avatarURL
     }});
-  console.log(`[${date}]` + " What's the time, Mr. Wolf?");
+  console.log(`[${date}] What's the time, Mr. Wolf?`);
 };
