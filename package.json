@@ -1,0 +1,32 @@
+{
+  "name": "gummibot-selfbot",
+  "version": "1.0.0",
+  "description": "Discord.js SelfBot",
+  "main": "app.js",
+  "dependencies": {
+    "dark-sky": "^1.0.10",
+    "discord.js": "^11.1.0",
+    "google-images": "^2.1.0",
+    "mathjs": "^3.12.1"
+  },
+  "scripts":{
+    "app": "node app.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GummiWummiBear/SelfBot.git"
+  },
+  "author": "GummiWummiBear",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GummiWummiBear/SelfBot/issues"
+  },
+  "engines":{
+    "node": "6.3.1"
+  },
+  "homepage": "https://github.com/GummiWummiBear/SelfBot#readme"
+}
