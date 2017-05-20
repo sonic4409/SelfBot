@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, args, richEmbed, math, forecast, Discord) => {
+exports.run = (client, msg, date, Discord, args, math, forecast) => {
   forecast
     .latitude("-31.9505")
     .longitude("115.8605")
@@ -39,10 +39,8 @@ exports.run = (client, msg, date, args, richEmbed, math, forecast, Discord) => {
         var hWeatherIcon = icons.get(response[h].icon);
       }
 
-      let humidity = parseInt(response[c].humidity);
-      let humidityPercentage = parseInt(humidity * 100);
-      let precip = parseInt(response[c].precipProbability);
-      let precipPercentage = parseInt(precip * 100);
+      let humidityPercentage = parseInt(response[c].humidity * 100);
+      let precipPercentage = parseInt(response[c].precipProbability * 100);
 
       const embed = new Discord.RichEmbed()
         .setColor(0x3498DB)

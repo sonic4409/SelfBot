@@ -1,13 +1,9 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
-const richEmbed = new Discord.RichEmbed(); // Set up RichEmbed
 const math = require("mathjs"); //Set up Calculator
 const DarkSky = require("dark-sky");
 const forecast = new DarkSky(config.darksky);
-
-//My Token
-const token = config.token;
 
 const gameMessage = "SelfBot";
 //Cool Startup Message
@@ -31,7 +27,7 @@ client.on("message", msg => {
 
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, args, richEmbed, math, forecast, Discord);
+    commandFile.run(client, msg, date, Discord, args, math, forecast);
 
   } catch (err) {
     return console.error(err);
@@ -51,4 +47,6 @@ client.on("ready", () => {
   client.user.setGame(gameMessage);
 });
 
-client.login(token);
+client.login(config.token);
+
+process.on("unhandledRejection", err => console.error(`Uncaught Promise Error: \n${err.stack}`));

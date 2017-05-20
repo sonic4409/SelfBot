@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, args) => {
+exports.run = (client, msg, date, Discord, args) => {
   let messagecount = parseInt(args[0]);
   var isNum = /^\d+$/.test(messagecount);
 
@@ -16,7 +16,7 @@ exports.run = (client, msg, date, args) => {
         // Has to delete messages individually. Cannot use `deleteMessages()` on selfbots.
         msg_array.map(m => m.delete()/*.catch(console.error)*/);
       });
-    console.log(`[${date}]` + ` ${messagecount} messages were pruned!`);
+    console.log(`[${date}] ${messagecount} messages were pruned!`);
   } else {
     msg.edit(":warning: **Invalid Parameters!**");
     setTimeout(() => {

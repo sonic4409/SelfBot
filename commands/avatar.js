@@ -1,8 +1,9 @@
-exports.run = (client, msg, date, args, richEmbed) => {
+exports.run = (client, msg, date, Discord) => {
   let url = msg.author.displayAvatarURL;
-  richEmbed.setColor(0x3498DB);
-  richEmbed.setImage(url);
-  richEmbed.setDescription(`${msg.author.username}'s Avatar, looks sexy amrite?`);
-  msg.channel.send("", {embed: richEmbed});
+  const embed = new Discord.RichEmbed()
+    .setColor(0x3498DB)
+    .setImage(url)
+    .setDescription(`${msg.author.username}'s Avatar, looks sexy amrite?`);
+  msg.channel.send({embed});
   console.log(`[${date}] Your avatar was displayed!`);
 };

@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, args, richEmbed, math, forecast) => { //Import everything for all commands and stuff
+exports.run = (client, msg, date, Discord, args, math, forecast) => { //Import everything for all commands and stuff
 
   function clean(text) {
     if (typeof(text) === "string")

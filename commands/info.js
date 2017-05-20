@@ -1,5 +1,5 @@
 exports.run = (client, msg, date) => {
-  msg.channel.sendEmbed({
+  msg.channel.send({embed: {
     color: 3447003,
     author: {
       name: client.user.username,
@@ -8,6 +8,6 @@ exports.run = (client, msg, date) => {
     title: "Gummi's Selfbot",
     //url: "http://google.com",
     description: "A SelfBot made in Discord.js (don't hit me dad)\nNry you better not ban me."
-  });
-  console.log(`${date}` + " Info was displayed!");
+  }});
+  console.log(`${date} Info was displayed!`);
 };
