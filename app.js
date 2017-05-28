@@ -41,7 +41,7 @@ client.on("messageDelete", msg => {
   if (msg.length === 0) return;
   sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, channelId TEXT, msgId TEXT, msgContent TEXT)"); //Create Table for Deleted Messages
   sql.run("INSERT INTO deletedMessages (userId, guildId, channelId, msgId, msgContent) VALUES (?, ?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.channel.id, msg.id, msg.content]);
-  console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, in channel: ${msg.channel.id}, deleted a message: "${msg.content}"`);
+  //console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, in channel: ${msg.channel.id}, deleted a message: "${msg.content}"`);
 });
 
 client.on("error", console.error);
