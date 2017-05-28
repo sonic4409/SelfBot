@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, args) => {
+exports.run = (client, msg, date, Discord, args) => {
 
   var text = args.join(" ");
 
