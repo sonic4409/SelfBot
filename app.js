@@ -25,11 +25,9 @@ client.on("message", msg => {
   //COMMAND Handler
   let command = msg.content.split(" ")[0];
   command = command.slice(config.prefix.length);
-
-  // The list of if/else is replaced with those simple 2 lines:
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, Discord, args, math, forecast);
+    commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
 
   } catch (err) {
     return console.error(err);
@@ -40,13 +38,9 @@ client.on("messageDelete", msg => {
   if (msg.author.bot) return; //Ignores bots' messages
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
-  try {
-    sql.run("INSERT INTO deletedMessages (userId, guildId, msgId, msgContent) VALUES (?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.id, msg.content]);
-    console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, deleted a message: ${msg.content}`);
-  } catch (err) {
-    sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, msgId TEXT, msgContent TEXT)");
-    console.log("Created Table!");
-  }
+  sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, channelId TEXT, msgId TEXT, msgContent TEXT)"); //Create Table for Deleted Messages
+  sql.run("INSERT INTO deletedMessages (userId, guildId, channelId, msgId, msgContent) VALUES (?, ?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.channel.id, msg.id, msg.content]);
+  console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, in channel: ${msg.channel.id}, deleted a message: "${msg.content}"`);
 });
 
 client.on("error", console.error);
