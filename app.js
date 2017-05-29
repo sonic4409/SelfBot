@@ -9,7 +9,7 @@ sql.open("./db/deletedMessages.sqlite");
 
 const gameMessage = "SelfBot";
 //Cool Startup Message
-console.log("Starting SelfBot...\nNode version: " + process.version + "\nDiscord.js version: " + Discord.version);
+console.log(`Starting SelfBot...\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
 client.on("message", msg => {
   //Set the Time
@@ -41,7 +41,7 @@ client.on("messageDelete", msg => {
   if (msg.length === 0) return;
   sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, channelId TEXT, msgId TEXT, msgContent TEXT)"); //Create Table for Deleted Messages
   sql.run("INSERT INTO deletedMessages (userId, guildId, channelId, msgId, msgContent) VALUES (?, ?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.channel.id, msg.id, msg.content]);
-  //console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, in channel: ${msg.channel.id}, deleted a message: "${msg.content}"`);
+  // GET VALUES FOR USER ID, USER TAG, USER AVATAR URL, CHANNEL ID, MSG CONTENT SOONTM
 });
 
 client.on("error", console.error);
@@ -49,10 +49,8 @@ client.on("warn", console.warn);
 client.on("disconnect", console.warn);
 
 client.on("ready", () => {
-  let dt = new Date();
-  let date = dt.toLocaleString();
-  console.log(`[${date}] Logged in as ${client.user.username}!`);
-  console.log(`[${date}] Currently in ${client.channels.size} channels on ${client.guilds.size} servers!`);
+  console.log(`Logged in as ${client.user.username}!`);
+  console.log(`Currently in ${client.channels.size} channels on ${client.guilds.size} servers!`);
   client.user.setGame(gameMessage);
 });
 
