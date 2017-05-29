@@ -1,6 +1,6 @@
 exports.run = (client, msg, date, Discord, args) => {
   const fs = require("fs"); //Load the filesystem module
-  const stats = fs.statSync("../db/deletedMessages.sql");
+  const stats = fs.statSync("./../db/deletedMessages.sql");
   const fileSizeInBytes = stats.size;
   //Convert the file size to megabytes (optional)
   const fileSizeInMegabytes = fileSizeInBytes / 1000000.0;
