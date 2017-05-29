@@ -1,12 +1,15 @@
 exports.run = (client, msg, date, Discord, args) => {
   const fs = require("fs"); //Load the filesystem module
-  const stats = fs.statSync("./../db/deletedMessages.sql");
-  const fileSizeInBytes = stats.size;
-  //Convert the file size to megabytes (optional)
-  const fileSizeInMegabytes = fileSizeInBytes / 1000000.0;
+  fs.stat("../db/deletedMessages.sqlite", function(err, stat) {
+  if(err) {
+    console.log(err);
+  }
+  console.log(stat.size);    
+  });
+
   msg.channel.send({embed: {
   color: 3447003,
-  description: `Current filesize of sqlite file is ${fileSizeInMegabytes}MB`
+  description: `Current filesize of sqlite file is ${stat.size}...`
   }});
   console.log(`[${date}] File size of deletedMessages.sqlite was viewed!`);
 }
