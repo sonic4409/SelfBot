@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const info = require("./package.json");
 const math = require("mathjs"); //Set up Calculator
 const DarkSky = require("dark-sky");
 const forecast = new DarkSky(config.darksky);
@@ -9,7 +10,7 @@ sql.open("./db/deletedMessages.sqlite");
 
 const gameMessage = "SelfBot";
 //Cool Startup Message
-console.log(`Starting SelfBot...\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
+console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
 client.on("message", msg => {
   //Set the Time
