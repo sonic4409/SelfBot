@@ -1,7 +1,7 @@
 exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`).then(row => {
     if (!row) {
-      msg.edit("Could not find the row!");
+      msg.edit(":warning: Could not find the row! :warning:").then(m => m.delete(2000));
       console.log(`[${date}] Could not find the row!`);
     } else {
       msg.delete();
