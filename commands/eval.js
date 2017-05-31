@@ -16,13 +16,13 @@ exports.run = (client, msg, date, Discord, args, math, forecast) => { //Import e
 
     var cleanEval = clean(evaled);
     if (args.length > 0) {
-      msg.delete();
-      msg.channel.send(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`xl\n${cleanEval}\n\`\`\``);
+      msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${cleanEval}\n\`\`\``);
       console.log(`[${date}] An eval command was used!`);
+    } else if (args.length === 0) {
+      msg.edit(`:warning: No arguments were provided! :warning:`).then(m => m.delete(2000);
     }
   } catch (err) {
-    msg.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``);
     console.log(`[${date}] Eval command failed!`);
   }
-  console.log(`[${date}] An eval command was used!`);
 };
