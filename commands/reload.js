@@ -1,4 +1,4 @@
-exports.run = (client, msg, Discord, args) => {
+exports.run = (client, msg, date, Discord, args) => {
   if(!args || args.size < 1) return msg.edit('Must provide a command name to reload.').then(m => m.delete(2000));
   // the path is relative to the *current folder*, so just ./filename.js
   delete require.cache[require.resolve(`./${args[0]}.js`)];
