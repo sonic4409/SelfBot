@@ -8,7 +8,7 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
       const embed = new Discord.RichEmbed()
         .setColor(0xFF0000)
         .setTitle(":recycle: Most Recent Deleted Message! :recycle:")
-        .setFooter(`<@${row.userId.tag}> (${row.userId})`, row.userId.displayAvatarURL)
+        .setFooter(`<@${msg.guild.members.get(row.userId).user.tag}> (${row.userId})`, msg.guild.members.get(row.userId).user.displayAvatarURL)
         .addField("Message:", `"${row.msgContent}"`);
       msg.channel.send({embed: embed}).catch(err => console.log(err));
       //msg.channel.send(`**(${row.userId}) Deleted Message**\n"${row.msgContent}"`);
@@ -18,3 +18,4 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
     console.log(err);
   });
 };
+//msg.guild.members.get("224445943343218688").user.tag
