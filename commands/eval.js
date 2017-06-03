@@ -1,10 +1,5 @@
-exports.run = (client, msg, date, Discord, args, math, forecast) => { //Import everything for all commands and stuff
-  function clean(text) {
-    if (typeof(text) === "string")
-      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-    else
-        return text;
-  }
+exports.run = (client, msg, date, Discord, args, math, forecast, clean) => { //Import everything for all commands and stuff
+
   var code = args.join(" ");
   try {
     var evaled = eval(code);
