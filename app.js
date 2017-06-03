@@ -22,13 +22,20 @@ client.on("message", msg => {
 
   //Don't run if the command is sent by another user
   if(msg.author !== client.user) return;
+  
+  function clean(text) {
+  if (typeof(text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+    return text;
+  }
 
   //COMMAND Handler
   let command = msg.content.split(" ")[0];
   command = command.slice(config.prefix.length);
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
+    commandFile.run(client, msg, date, Discord, args, math, forecast, sql, clean);
 
   } catch (err) {
     return console.error(err);
