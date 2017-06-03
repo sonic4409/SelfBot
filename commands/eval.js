@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, Discord, args, math, forecast, clean) => { //Import everything for all commands and stuff
+exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => { //Import everything for all commands and stuff
 
   var code = args.join(" ");
   try {
