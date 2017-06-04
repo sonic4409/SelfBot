@@ -1,5 +1,5 @@
 exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
-  sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`).then(row => {
+  sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if (!row) {
       msg.channel.send("Could not find the row!");
       console.log(`[${date}] Could not find the row!`);

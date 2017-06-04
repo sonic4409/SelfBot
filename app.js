@@ -39,9 +39,18 @@ client.on("messageDelete", msg => {
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
   if (msg.length === 0) return;
-  sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, channelId TEXT, msgId TEXT, msgContent TEXT)"); //Create Table for Deleted Messages
-  sql.run("INSERT INTO deletedMessages (userId, guildId, channelId, msgId, msgContent) VALUES (?, ?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.channel.id, msg.id, msg.content]);
-  //console.log(`(${msg.author.id}) in guild: ${msg.guild.id}, in channel: ${msg.channel.id}, deleted a message: "${msg.content}"`);
+  sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
+    if(!row) {
+      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
+    } else {
+      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND msgContent = ${msg.content} WHERE channelId = ${msg.channel.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)").then(() => {
+      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
+    }); //Create Table for Deleted Messages
+  });
 });
 
 client.on("error", console.error);
