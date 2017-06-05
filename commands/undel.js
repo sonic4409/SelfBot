@@ -16,5 +16,6 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
     }
   }).catch((err) => {
     console.log(err);
+    sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
   });
 };
