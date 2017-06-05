@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
-  sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
-    if (!row) {
-      msg.channel.send("Could not find the row!");
-      console.log(`[${date}] Could not find the row!`);
-    } else {
-      msg.delete();
-      const embed = new Discord.RichEmbed()
-        .setColor(0xFF0000)
-        .setTitle(":recycle: Most Recent Deleted Message! :recycle:")
-        .setFooter(`Author: ${row.userId}`)
-        .addField("Message:", `"${row.msgContent}"`);
-      msg.channel.send({embed: embed});
-      //msg.channel.send(`**(${row.userId}) Deleted Message**\n"${row.msgContent}"`);
-      console.log(`[${date}] Undel command was used!`);
-    }
-  }).catch((err) => {
-    console.log(err);
-  });
-};
-=======
 exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`).then(row => {
     if (!row) {
@@ -40,5 +18,3 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => {
     console.log(err);
   });
 };
-//msg.guild.members.get("224445943343218688").user.tag
->>>>>>> 26edbdcbb181516f757c93e3b57eb39381355c61

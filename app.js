@@ -22,12 +22,11 @@ client.on("message", msg => {
 
   //Don't run if the command is sent by another user
   if(msg.author !== client.user) return;
-  
+
   function clean(text) {
-  if (typeof(text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-    return text;
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else return text;
   }
 
   //COMMAND Handler
@@ -47,7 +46,7 @@ client.on("messageDelete", msg => {
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
   if (msg.length === 0) return;
-<<<<<<< HEAD
+
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if(!row) {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
@@ -60,11 +59,6 @@ client.on("messageDelete", msg => {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
     }); //Create Table for Deleted Messages
   });
-=======
-  sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, guildId TEXT, channelId TEXT, msgId TEXT, msgContent TEXT)"); //Create Table for Deleted Messages
-  sql.run("INSERT INTO deletedMessages (userId, guildId, channelId, msgId, msgContent) VALUES (?, ?, ?, ?, ?)", [msg.author.id, msg.guild.id, msg.channel.id, msg.id, msg.content]);
-  // GET VALUES FOR USER ID, USER TAG, USER AVATAR URL, CHANNEL ID, MSG CONTENT SOONTM
->>>>>>> 26edbdcbb181516f757c93e3b57eb39381355c61
 });
 
 client.on("error", console.error);
