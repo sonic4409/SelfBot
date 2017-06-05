@@ -46,7 +46,7 @@ client.on("messageDelete", msg => {
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
   if (msg.length === 0) return;
-
+  
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if(!row) {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
@@ -62,7 +62,7 @@ client.on("messageDelete", msg => {
       console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
-  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "\${msg.content}"`);
+  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${msg.content}"`);
 });
 
 client.on("error", console.error);
