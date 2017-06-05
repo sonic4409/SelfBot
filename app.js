@@ -52,13 +52,14 @@ client.on("messageDelete", msg => {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
       console.log("Could not find the row, so created a new one for the channel!");
     } else {
-      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND SET msgContent = ${msg.content} WHERE channelId = ${msg.channel.id}`);
-      console.log(`Updated the row!`);
+      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND SET msgContent = ${msg.content} WHERE channelId = ${msg.channel.id}`).catch(err => {console.log(err)});
+      console.log("Updated the row!");
     }
   }).catch(() => {
     console.error;
     sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)").then(() => {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
+      console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
   console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${msg.content}"`);
