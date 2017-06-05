@@ -62,7 +62,7 @@ client.on("messageDelete", msg => {
       console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
-  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${msg.content}"`);
+  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "\${msg.content}"`);
 });
 
 client.on("error", console.error);
