@@ -61,7 +61,7 @@ client.on("messageDelete", msg => {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
     }); //Create Table for Deleted Messages
   });
-  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: ${msg.content}`);
+  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${msg.content}"`);
 });
 
 client.on("error", console.error);
