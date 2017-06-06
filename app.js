@@ -46,23 +46,26 @@ client.on("messageDelete", msg => {
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
   if (msg.length === 0) return;
+  function escaped(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+  }
   
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if(!row) {
-      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
+      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, escaped(msg.content)]);
       console.log("Could not find the row, so created a new one for the channel!");
     } else {
-      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND msgContent = ${msg.content} WHERE channelId = ${msg.channel.id}`);
+      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND msgContent = ${escaped(msg.content)} WHERE channelId = ${msg.channel.id}`);
       console.log("Updated the row!");
     }
   }).catch(() => {
     console.error;
     sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)").then(() => {
-      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
+      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, escaped(msg.content)]);
       console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
-  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${msg.content}"`);
+  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${escaped(msg.content)}"`);
 });
 
 client.on("error", console.error);
