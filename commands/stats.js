@@ -9,5 +9,5 @@ exports.run = (client, msg, date, Discord) => {
 
   msg.delete();
   msg.channel.send({embed: embed});
+  console.log(`[${date}] Bot stats were viewed!`);
 }
-//process.memoryUsage().heapUsed/1000000)
