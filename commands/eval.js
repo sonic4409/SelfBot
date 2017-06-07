@@ -7,7 +7,7 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => 
     if (typeof evaled !== "string")
       evaled = require("util").inspect(evaled);
 
-    var cleanEval = clean(evaled);
+    var cleanEval = clean(evaled.replace(new RegExp(client.token, "g"), "Nope"));
     if (args.length > 0) {
       msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${cleanEval}\n\`\`\``);
       console.log(`[${date}] An eval command was used!`);
