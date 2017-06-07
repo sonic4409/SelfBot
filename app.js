@@ -8,7 +8,6 @@ const forecast = new DarkSky(config.darksky);
 const sql = require("sqlite");
 sql.open("./db/deletedMessages.sqlite");
 
-const gameMessage = "SelfBot";
 //Cool Startup Message
 console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
@@ -65,7 +64,6 @@ client.on("messageDelete", msg => {
       console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
-  console.log(`USER ID: ${msg.author.id} | CHANNEL ID: ${msg.channel.id} | MESSAGE CONTENT: "${escaped(msg.content)}"`);
 });
 
 client.on("error", console.error);
@@ -74,8 +72,6 @@ client.on("disconnect", console.warn);
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.username}!`);
-  console.log(`Currently in ${client.channels.size} channels on ${client.guilds.size} servers!`);
-  client.user.setGame(gameMessage);
 });
 
 client.login(config.token);
