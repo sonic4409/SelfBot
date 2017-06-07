@@ -1,8 +1,6 @@
 exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => { //Import everything for all commands and stuff
-
-  var code = args.join(" ");
   try {
-    var evaled = eval(code);
+    var evaled = eval(args.join(" "));
 
     if (typeof evaled !== "string")
       evaled = require("util").inspect(evaled);
