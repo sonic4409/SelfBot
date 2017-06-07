@@ -11,7 +11,7 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => 
       msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${cleanEval}\n\`\`\``);
       console.log(`[${date}] An eval command was used!`);
     } else if (args.length === 0) {
-      msg.edit(`:warning: No arguments were provided! :warning:`).then(m => m.delete(2000));
+      msg.edit(`:warning: ${client.user.username} used nothing! But nothing happened! :warning:`).then(m => m.delete(2000));
     }
   } catch (err) {
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``);
