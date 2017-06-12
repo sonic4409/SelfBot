@@ -10,7 +10,7 @@ exports.run = (client, msg, date, Discord, args) => {
 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
 
-    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\`\n*Type: ${clean(evaled).constructor.name}*`);
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${evaled}\n\`\`\`\n*Type: ${clean(evaled).constructor.name}*`);
     console.log(`[${date}] An eval command was used!`);
   } catch (err) {
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``);
