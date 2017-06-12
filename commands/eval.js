@@ -13,7 +13,7 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => 
     }
   } catch (err) {
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${err}\n\`\`\``).catch(err => console.log(err));
-    console.log(`[${date}] Eval command failed!\nERROR:\n${err}`);
+    console.log(`[${date}] Eval command failed!\nERROR:\n${err.stack}`);
   }
   consolg.log(`[${date}] Evaled some stuff?`);
 };
