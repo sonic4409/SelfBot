@@ -1,8 +1,8 @@
 exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Import everything for all commands and stuff
-  function clean(text) {
+  const clean = text => {
     if (typeof(text) === "string")
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(new RegExp(client.token, "g"), "Nope");
-    else return text;
+    else return text;   
   }
   console.log(`[${date}] Evaled some stuff?`);
   try {
@@ -13,11 +13,11 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Imp
       return evaled = require("util").inspect(evaled);
 
     if (code.length > 0) {
-      msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``).catch(err => console.log(err));
+      msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
       console.log(`[${date}] An eval command was used!`);
     }
   } catch (err) {
-    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``).catch(err => console.log(err));
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``);
     console.log(`[${date}] Eval command failed!\nERROR:\n${err.stack}`);
   }
 };
