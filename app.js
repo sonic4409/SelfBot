@@ -11,11 +11,6 @@ sql.open("./db/deletedMessages.sqlite");
 //Cool Startup Message
 console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
-function clean(text) {
-  if (typeof(text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else return text;
-}
 function escaped(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
@@ -36,7 +31,7 @@ client.on("message", msg => {
   command = command.slice(config.prefix.length);
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, Discord, args, math, forecast, sql, clean);
+    commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
 
   } catch (err) {
     return console.error(err);
