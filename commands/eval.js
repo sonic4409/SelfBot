@@ -4,7 +4,6 @@ exports.run = (client, msg, date, Discord, args) => {
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(new RegExp(client.token, "g"), "Nope");
     else return text;   
   };
-  console.log(`[${date}] Evaled some stuff?`);
   try {
     var code = args.join(" "); 
     let evaled = eval(code);
