@@ -1,6 +1,6 @@
 {
   "name": "gummibot-selfbot",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Discord.js SelfBot",
   "main": "app.js",
   "dependencies": {
