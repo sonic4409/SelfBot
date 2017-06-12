@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Import everything for all commands and stuff
+exports.run = (client, msg, date, Discord, args) => {
   const clean = text => {
     if (typeof(text) === "string")
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(new RegExp(client.token, "g"), "Nope");
