@@ -12,10 +12,8 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Imp
     if (typeof evaled !== "string")
       return evaled = require("util").inspect(evaled);
 
-    if (code.length > 0) {
-      msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
-      console.log(`[${date}] An eval command was used!`);
-    }
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
+    console.log(`[${date}] An eval command was used!`);
   } catch (err) {
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``);
     console.log(`[${date}] Eval command failed!\nERROR:\n${err.stack}`);
