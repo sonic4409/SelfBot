@@ -6,7 +6,7 @@ Make sure you have Nodejs installed.
 To install dependencies, run `npm install`
 
 # Config
-To set up your bot, you'll need these:
+To set up your bot, you'll need create a `config.json` file with this inside:
 ```js
 {
    "token": "", // Discord Bot Token
@@ -16,6 +16,3 @@ To set up your bot, you'll need these:
    "googleAPI": "" // Google API Key
 }
 ```
-
-# Other
-If you want all functionality, you'll need a darksky API token and a Google CSE and API token.
