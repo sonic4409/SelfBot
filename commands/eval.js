@@ -1,4 +1,9 @@
-exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => { //Import everything for all commands and stuff
+exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Import everything for all commands and stuff
+  function clean(text) {
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else return text;
+  }
   try {
     var code = args.join(" "); 
     let evaled = eval(code);
@@ -15,5 +20,5 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => 
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${err}\n\`\`\``).catch(err => console.log(err));
     console.log(`[${date}] Eval command failed!\nERROR:\n${err.stack}`);
   }
-  consolg.log(`[${date}] Evaled some stuff?`);
+  console.log(`[${date}] Evaled some stuff?`);
 };
