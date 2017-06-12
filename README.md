@@ -9,12 +9,11 @@ To install dependencies, run `npm install`
 To set up your bot, you'll need these:
 ```js
 {
-    "token": "", // Discord Bot Token
-    "prefix": "", // Bot Prefix
-    "darksky": "", // DarkSky Weather API Key
-    "googleCSE": "", // Google Custom Search Engine Key
-    "googleAPI": "", // Google API Key
-    }
+   "token": "", // Discord Bot Token
+   "prefix": "", // Bot Prefix
+   "darksky": "", // DarkSky Weather API Key
+   "googleCSE": "", // Google Custom Search Engine Key
+   "googleAPI": "" // Google API Key
 }
 ```
 
