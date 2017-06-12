@@ -3,14 +3,13 @@ exports.run = (client, msg, date, Discord, args) => {
     if (typeof(text) === "string")
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(new RegExp(client.token, "g"), "Nope");
     else return text;   
-  }
+  };
   console.log(`[${date}] Evaled some stuff?`);
   try {
     var code = args.join(" "); 
     let evaled = eval(code);
 
-    if (typeof evaled !== "string")
-      return evaled = require("util").inspect(evaled);
+    if (typeof evaled !== "string") return evaled = require("util").inspect(evaled);
 
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
     console.log(`[${date}] An eval command was used!`);
