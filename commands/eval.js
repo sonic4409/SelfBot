@@ -1,6 +1,6 @@
 exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => { //Import everything for all commands and stuff
-  var code = args.join(" "); 
   try {
+    var code = args.join(" "); 
     let evaled = eval(code);
 
     if (typeof evaled !== "string")
@@ -12,7 +12,8 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql, clean) => 
       console.log(`[${date}] An eval command was used!`);
     }
   } catch (err) {
-    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(err)}\n\`\`\``).catch(err => console.log(err));
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${err}\n\`\`\``).catch(err => console.log(err));
     console.log(`[${date}] Eval command failed!\nERROR:\n${err}`);
   }
+  consolg.log(`[${date}] Evaled some stuff?`);
 };
