@@ -6,7 +6,7 @@ exports.run = (client, msg, date, Discord, args, math, forecast, sql) => { //Imp
   }
   console.log(`[${date}] Evaled some stuff?`);
   try {
-    var code = args.join(" "); 
+    const code = args.join(" "); 
     let evaled = eval(code);
 
     if (typeof evaled !== "string")
