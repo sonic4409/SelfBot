@@ -49,7 +49,7 @@ client.on("messageDelete", msg => {
       sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, escaped(msg.content)]);
       console.log("Could not find the row, so created a new one for the channel!");
     } else {
-      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id} AND msgContent = ${escaped(msg.content)} WHERE channelId = ${msg.channel.id}`);
+      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id}, msgContent = ${escaped(msg.content)} WHERE channelId = ${msg.channel.id}`);
       console.log("Updated the row!");
     }
   }).catch(() => {
