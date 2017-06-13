@@ -12,7 +12,7 @@ sql.open("./db/deletedMessages.sqlite");
 console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
 function escaped(text) {
-  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+  return text.replace(/[.*+?^${}()<>|:[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
 client.on("message", msg => {
