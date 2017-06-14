@@ -43,7 +43,7 @@ client.on("messageDelete", msg => {
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
   if (msg.length === 0) return;
-  if (msg.content.startsWith("\\")) return; //I'm incapable of escaping backslashes
+  if (msg.content.includes("\\")) return; //I'm incapable of escaping backslashes
   
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if(!row) {
