@@ -71,4 +71,4 @@ client.on("ready", () => {
 
 client.login(config.token);
 
-process.on("unhandledRejection", err => console.error(`Uncaught Promise Error: \n${err.stack}`));
+process.on("unhandledRejection", console.error);
