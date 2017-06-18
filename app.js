@@ -19,7 +19,7 @@ client.on("message", msg => {
   //Set the Time
   var dt = new Date();
   var date = dt.toLocaleString();
-  let args = msg.content.split(" ").slice(1);
+  const args = msg.content.split(" "); // let args = msg.content.split(" ").slice(1);
 
   if(!msg.content.startsWith(config.prefix)) return;
 
@@ -27,8 +27,7 @@ client.on("message", msg => {
   if(msg.author !== client.user) return;
 
   //COMMAND Handler
-  let command = msg.content.split(" ")[0];
-  command = command.slice(config.prefix.length);
+  const command = args.shift().slice(config.prefix.length);
   try {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
