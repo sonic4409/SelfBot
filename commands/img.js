@@ -12,7 +12,7 @@ exports.run = (client, msg, date, Discord, args) => {
           let image = response[0].url;
           const embed = new Discord.RichEmbed()
             .setColor(0x3498DB)
-            .setTitle(`Image result for: **${search}**`)
+            .setTitle(`Image Result For: **${search}**`)
             .setDescription(image)
             .setImage(image);
           msg.delete();
@@ -20,10 +20,11 @@ exports.run = (client, msg, date, Discord, args) => {
           console.log(`[${date}] Searched for '${search}'`);
         });
     } catch (err) {
+      msg.edit("Something went terribly wrong...").then(m => m.delete(2000));
       console.error(err);
     }
   } else {
-    msg.edit(":warning: Invalid Parameters!") .then(m => m.delete(1000));
+    msg.edit(":warning: Invalid Parameters!") .then(m => m.delete(2000));
     console.log(`[${date}] Search command failed due to invalid parameters!`);
   }
 };
