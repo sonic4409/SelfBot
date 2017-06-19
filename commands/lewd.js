@@ -20,7 +20,7 @@ exports.run = (client, msg, date, Discord, args) => {
           console.log(`[${date}] Searched for '${search}'`);
         });
     } catch (err) {
-      msg.edit(`[${date}] Something went terribly wrong...`).then(m => m.delete(2000));
+      msg.edit("Something went terribly wrong...").then(m => m.delete(2000));
       console.error(err);
     }
   } else {
