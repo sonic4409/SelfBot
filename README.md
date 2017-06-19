@@ -7,7 +7,7 @@ To install dependencies, run `npm install`
 
 # Config
 To set up your bot, you'll need create a `config.json` file with this inside:
-```js
+```json
 {
    "token": "", // Discord Bot Token
    "prefix": "", // Bot Prefix
@@ -15,4 +15,9 @@ To set up your bot, you'll need create a `config.json` file with this inside:
    "googleCSE": "", // Google Custom Search Engine Key
    "googleAPI": "" // Google API Key
 }
+```
+# Running
+To start the bot, run:
+```
+pm2 start app.js --attach
 ```
