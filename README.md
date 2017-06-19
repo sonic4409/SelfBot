@@ -7,7 +7,7 @@ To install dependencies, run `npm install`
 
 # Config
 To set up your bot, you'll need create a `config.json` file with this inside:
-```json
+```
 {
    "token": "", // Discord Bot Token
    "prefix": "", // Bot Prefix
