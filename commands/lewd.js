@@ -7,7 +7,7 @@ exports.run = (client, msg, date, Discord, args) => {
 
   if (search.length > 0) {
     try {
-      gClient.search(search, {safe: off})
+      gClient.search(search, {safe: "off"})
         .then (response => {
           let image = response[0].url;
           const embed = new Discord.RichEmbed()
