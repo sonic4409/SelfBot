@@ -46,10 +46,10 @@ client.on("messageDelete", msg => {
   
   sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`).then(row => {
     if(!row) {
-      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, escaped(msg.content)]);
+      sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
       console.log("Could not find the row, so created a new one for the channel!");
     } else {
-      sql.run(`UPDATE deletedMessages SET userId = ${msg.author.id}, msgContent = ${escaped(msg.content)} WHERE channelId = ${msg.channel.id}`);
+      sql.run("REPLACE INTO deletedMessages (userId, channelId, msgContent) VALUES(?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
       console.log("Updated the row!");
     }
   }).catch(() => {
@@ -59,6 +59,7 @@ client.on("messageDelete", msg => {
       console.log("Created Table!");
     }); //Create Table for Deleted Messages
   });
+});
 });
 
 client.on("error", console.error);
