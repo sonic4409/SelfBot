@@ -5,7 +5,7 @@ exports.run = async (client, msg, date, Discord, args) => {
     msg.edit(`:heart: ${client.user.username} hugs ${target}! :heart:`);
     console.log(`[${date}] Hug command was used successfully!`);
   } else {
-    let m = msg.edit(":warning: Target name must be 3 characters or longer!");
+    let m = await msg.edit(":warning: Target name must be 3 characters or longer!");
     m.delete(2000);
     console.log(`[${date}] Hug command was used improperly!`);
   }
