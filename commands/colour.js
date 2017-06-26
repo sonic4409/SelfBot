@@ -10,7 +10,8 @@ exports.run = async (client, msg, date, Discord, args) => {
     msg.channel.send("", {embed});
     console.log(`[${date}] Colour ${colour} was displayed successfully!`);
   } else {
-    msg.edit(":warning: **Invalid Parameters!** :warning:").then(m => m.delete(2000));
+    let m = await msg.edit(":warning: **Invalid Parameters!** :warning:");
+    m.delete(2000);
     console.log(`[${date}] The colour ${colour} failed to be displayed...`);
   }
 };
