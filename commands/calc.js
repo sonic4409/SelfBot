@@ -11,7 +11,7 @@ exports.run = async (client, msg, date, Discord, args, math) => {
       console.log(`[${date}] I can math good!`);
     }
   } catch (err) {
-    let m = msg.edit("Couldn't math good :(");
+    let m = await msg.edit("Couldn't math good :(");
     m.delete(2000);
     console.log(`[${date}] I can't math good...\n${err}`);
   }
