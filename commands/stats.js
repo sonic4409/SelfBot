@@ -1,5 +1,5 @@
-exports.run = (client, msg, date, Discord) => {
-  const embed = new Discord.RichEmbed()
+exports.run = async (client, msg, date, Discord) => {
+  const embed = await new Discord.RichEmbed()
     .setColor(0x7CFC00)
     .setTitle("Stats:")
     .setFooter(`Node version: ${process.version} | Discord.js version: ${Discord.version}`, client.user.displayAvatarURL)
@@ -10,4 +10,4 @@ exports.run = (client, msg, date, Discord) => {
   msg.delete();
   msg.channel.send({embed: embed});
   console.log(`[${date}] Bot stats were viewed!`);
-}
+};

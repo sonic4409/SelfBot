@@ -7,9 +7,9 @@ exports.run = async (client, msg, date, Discord, args) => {
 
   if (search.length > 0) {
     try {
-      const response = await gClient.search(search)
+      const response = await gClient.search(search);
       if (!response) {
-        let m = await msg.edit("Nothing Found!")
+        let m = await msg.edit("Nothing Found!");
         m.delete(2000);
         return;
       } else {
@@ -22,7 +22,7 @@ exports.run = async (client, msg, date, Discord, args) => {
         msg.delete();
         msg.channel.send("", {embed});
         console.log(`[${date}] Searched for '${search}'`);
-      };
+      }
 
     } catch (err) {
       let m = await msg.edit("Something went terribly wrong...");

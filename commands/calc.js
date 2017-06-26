@@ -1,4 +1,4 @@
-exports.run = (client, msg, date, Discord, args, math) => {
+exports.run = async (client, msg, date, Discord, args, math) => {
   try {
     var text = args.join(" ");
     var result = math.eval(text);
@@ -11,8 +11,9 @@ exports.run = (client, msg, date, Discord, args, math) => {
       console.log(`[${date}] I can math good!`);
     }
   } catch (err) {
-    msg.edit("Couldn't math good :(");
-    console.log(`[${date}] I can't math good...`);
+    let m = msg.edit("Couldn't math good :(");
+    m.delete(2000);
+    console.log(`[${date}] I can't math good...\n${err}`);
   }
 
 };

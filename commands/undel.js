@@ -1,6 +1,6 @@
 exports.run = async (client, msg, date, Discord, args, math, forecast, sql) => {
   try {
-    const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`)
+    const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`);
     if (!row) {
       msg.edit(":warning: Could not find the row! :warning:").then(m => m.delete(2000));
       console.log(`[${date}] Could not find the row!`);
@@ -15,7 +15,7 @@ exports.run = async (client, msg, date, Discord, args, math, forecast, sql) => {
       console.log(`[${date}] Undel command was used!`);
     }
   } catch (err) {
-      console.log(err);
-      sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
+    console.log(err);
+    sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
   }
 };

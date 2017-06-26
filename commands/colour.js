@@ -1,10 +1,10 @@
-exports.run = (client, msg, date, Discord, args) => {
+exports.run = async (client, msg, date, Discord, args) => {
   var colour = args.join(" ");
   var isNum = /^\d+$/.test(colour);
 
   if(((colour.indexOf("#") === 0) && colour.length === 7) || (isNum && colour.length <= 8 && colour <= 16777215)) {
     msg.delete();
-    const embed = new Discord.RichEmbed()
+    const embed = await new Discord.RichEmbed()
       .setColor(colour)
       .setDescription(colour);
     msg.channel.send("", {embed});
