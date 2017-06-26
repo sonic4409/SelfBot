@@ -11,7 +11,6 @@ exports.run = async (client, msg, date, Discord, args, math, forecast, sql) => {
         .addField("Message:", `"${row.msgContent}"`);
       msg.delete();
       msg.channel.send({embed: embed}).catch(err => console.log(err));
-      //msg.channel.send(`**(${row.userId}) Deleted Message**\n"${row.msgContent}"`);
       console.log(`[${date}] Undel command was used!`);
     }
   }).catch((err) => {
