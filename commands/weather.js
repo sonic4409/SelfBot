@@ -1,21 +1,15 @@
-exports.run = (client, msg, date, Discord, args, math, forecast) => {
-  forecast
-    .latitude("-31.9505")
-    .longitude("115.8605")
-    .units("ca") //Celsius
-    .language("en") //English
-    .get()
-    .then(response => {
-      //console.log(response);
-      let c = "currently";
-      let d = "daily";
-      let h = "hourly";
-      //let lat = response.latitude;
-      //let long = response.longitude;
+exports.run = async (client, msg, date, Discord, args, math, forecast) => {
+  try {
+    const response = await forecast
+      .latitude("-31.9505")
+      .longitude("115.8605")
+      .units("ca") //Celsius
+      .language("en") //English
+      .get()
       let timezone = response.timezone;
-      let currentSummary = response[c].summary;
-      let dailySummary = response[d].summary;
-      let hourlySummary = response[h].summary;
+      let currentSummary = response["currently"].summary;
+      let dailySummary = response["daily"].summary;
+      let hourlySummary = response["hourly"].summary;
 
       //ICONS BUT IT'S IN A MAP SO IT'S AMAZING
       let icons = new Map([
@@ -33,27 +27,26 @@ exports.run = (client, msg, date, Discord, args, math, forecast) => {
       ]);
 
       //Get the Icons
-      if (icons.has(response[c].icon)) {
-        var cWeatherIcon = icons.get(response[c].icon);
-        var dWeatherIcon = icons.get(response[d].icon);
-        var hWeatherIcon = icons.get(response[h].icon);
+      if (icons.has(response["currently"].icon)) {
+        var cWeatherIcon = icons.get(response["currently"].icon);
+        var dWeatherIcon = icons.get(response["daily"].icon);
+        var hWeatherIcon = icons.get(response["hourly"].icon);
       }
 
-      let humidityPercentage = parseInt(response[c].humidity * 100);
-      let precipPercentage = parseInt(response[c].precipProbability * 100);
+      let humidityPercentage = parseInt(response["currently"].humidity * 100);
+      let precipPercentage = parseInt(response["currently"].precipProbability * 100);
 
-      const embed = new Discord.RichEmbed()
+      const embed = await new Discord.RichEmbed()
         .setColor(0x3498DB)
         .setTitle(`Weather for *${timezone}*`)
-        .addField(`${cWeatherIcon} Current:`, `Summary: ${currentSummary}\nTemperature: ${response[c].temperature}°C\nFeels Like: ${response[c].apparentTemperature}°C\nChance of Precipitation: ${precipPercentage}%\nHumidity: ${humidityPercentage}%`, true)
+        .addField(`${cWeatherIcon} Current:`, `Summary: ${currentSummary}\nTemperature: ${response["currently"].temperature}°C\nFeels Like: ${response["currently"].apparentTemperature}°C\nChance of Precipitation: ${precipPercentage}%\nHumidity: ${humidityPercentage}%`, true)
         .addField(`${dWeatherIcon} Daily:`, `Summary: ${dailySummary}`, true)
         .addField(`${hWeatherIcon} Hourly:`, `Summary: ${hourlySummary}`, true);
       msg.delete();
       msg.channel.send("", {embed: embed});
       //msg.channel.sendEmbed(richEmbed);
       console.log(`[${date}] Weather command used!`);
-    })
-    .catch(err => {
+    } catch(err) {
       console.log(err);
-    });
+    };
 };
