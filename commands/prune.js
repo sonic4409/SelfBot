@@ -1,8 +1,7 @@
 exports.run = async (client, msg, date, Discord, args) => {
   let messagecount = parseInt(args[0]);
-  var isNum = /^\d+$/.test(messagecount);
 
-  if (messagecount <= 100 && isNum) {
+  if (messagecount <= 100 && !isNaN(messagecount)) {
     // get the channel logs
     let messages = await msg.channel.fetchMessages({
       limit: 100
