@@ -1,3 +1,4 @@
+const Raven = require("raven");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -6,6 +7,7 @@ const math = require("mathjs"); //Set up Calculator
 const DarkSky = require("dark-sky");
 const forecast = new DarkSky(config.darksky);
 const sql = require("sqlite");
+Raven.config(config.ravenDSN).install()
 sql.open("./db/deletedMessages.sqlite");
 
 //Cool Startup Message
