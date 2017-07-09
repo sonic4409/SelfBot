@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args) => {
+exports.run = async(client, msg, date, Discord, args) => {
   let messagecount = parseInt(args[0]);
 
   if (messagecount <= 100 && !isNaN(messagecount)) {
@@ -13,7 +13,7 @@ exports.run = async (client, msg, date, Discord, args) => {
     // limit to the requested number + 1 for the command message
     msg_array.length = messagecount + 1;
     // Has to delete messages individually. Cannot use `deleteMessages()` on selfbots.
-    msg_array.map(m => m.delete()/*.catch(console.error)*/);
+    msg_array.map(m => m.delete() /*.catch(console.error)*/ );
 
     console.log(`[${date}] ${messagecount} messages were pruned!`);
   } else {

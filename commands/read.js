@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args) => {
+exports.run = async(client, msg, date, Discord, args) => {
   if (args[0] === "all") {
     client.guilds.forEach(g => g.acknowledge());
     let m = await msg.edit("Marked all guilds as read!");

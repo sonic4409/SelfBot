@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord) => {
+exports.run = async(client, msg, date, Discord) => {
   let url = msg.author.displayAvatarURL;
   const embed = await new Discord.RichEmbed()
     .setColor(0x3498DB)

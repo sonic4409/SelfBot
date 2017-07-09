@@ -1,5 +1,5 @@
-exports.run = async (client, msg, date, Discord, args) => {
-  if(!args || args.size < 1) {
+exports.run = async(client, msg, date, Discord, args) => {
+  if (!args || args.size < 1) {
     let m = await msg.edit("Must provide a command name to reload.");
     m.delete(2000);
     return;

@@ -11,6 +11,7 @@ To set up your bot, you'll need create a `config.json` file with this inside:
 {
    "token": "", // Discord Bot Token
    "prefix": "", // Bot Prefix
+   "ravenDSN": "", //Sentry.io DSN Link
    "darksky": "", // DarkSky Weather API Key
    "googleCSE": "", // Google Custom Search Engine Key
    "googleAPI": "" // Google API Key

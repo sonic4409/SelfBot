@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args) => {
+exports.run = async(client, msg, date, Discord, args) => {
   const config = require("../config.json");
   const GoogleImages = require("google-images");
   const gClient = new GoogleImages(config.googleCSE, config.googleAPI);
@@ -20,7 +20,9 @@ exports.run = async (client, msg, date, Discord, args) => {
           .setDescription(image)
           .setImage(image);
         msg.delete();
-        msg.channel.send("", {embed});
+        msg.channel.send("", {
+          embed
+        });
         console.log(`[${date}] Searched for '${search}'`);
       }
 

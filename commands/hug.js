@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args) => {
+exports.run = async(client, msg, date, Discord, args) => {
   //const images =
   let target = args[0];
   if (target.length > 2) {

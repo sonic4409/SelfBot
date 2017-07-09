@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord) => {
+exports.run = async(client, msg, date, Discord) => {
   const embed = await new Discord.RichEmbed()
     .setColor(0x7CFC00)
     .setTitle("Stats:")
@@ -8,6 +8,6 @@ exports.run = async (client, msg, date, Discord) => {
     .addField("Uptime", `≈ ${Math.round(process.uptime()/60)} minutes`, true);
 
   msg.delete();
-  msg.channel.send({embed: embed});
+  msg.channel.send({embed});
   console.log(`[${date}] Bot stats were viewed!`);
 };

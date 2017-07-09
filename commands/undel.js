@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args, math, forecast, sql) => {
+exports.run = async(client, msg, date, Discord, args, math, forecast, sql) => {
   try {
     const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`);
     if (!row) {
@@ -11,7 +11,7 @@ exports.run = async (client, msg, date, Discord, args, math, forecast, sql) => {
         .setFooter(`${msg.guild.members.get(row.userId).user.tag} (${row.userId})`, msg.guild.members.get(row.userId).user.displayAvatarURL)
         .addField("Message:", `"${row.msgContent}"`);
       msg.delete();
-      msg.channel.send({embed: embed});
+      msg.channel.send({embed});
       console.log(`[${date}] Undel command was used!`);
     }
   } catch (err) {

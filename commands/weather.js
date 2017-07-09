@@ -1,4 +1,4 @@
-exports.run = async (client, msg, date, Discord, args, math, forecast) => {
+exports.run = async(client, msg, date, Discord, args, math, forecast) => {
   try {
     const response = await forecast
       .latitude("-31.9505")
@@ -43,10 +43,10 @@ exports.run = async (client, msg, date, Discord, args, math, forecast) => {
       .addField(`${dWeatherIcon} Daily:`, `Summary: ${dailySummary}`, true)
       .addField(`${hWeatherIcon} Hourly:`, `Summary: ${hourlySummary}`, true);
     msg.delete();
-    msg.channel.send("", {embed: embed});
+    msg.channel.send("", {embed});
     //msg.channel.sendEmbed(richEmbed);
     console.log(`[${date}] Weather command used!`);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };

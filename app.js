@@ -18,10 +18,10 @@ client.on("message", msg => {
   var date = new Date().toLocaleString();
   const args = msg.content.split(" "); // let args = msg.content.split(" ").slice(1);
 
-  if(!msg.content.startsWith(config.prefix)) return;
+  if (!msg.content.startsWith(config.prefix)) return;
 
   //Don't run if the command is sent by another user
-  if(msg.author !== client.user) return;
+  if (msg.author !== client.user) return;
 
   //COMMAND Handler
   const command = args.shift().slice(config.prefix.length);
@@ -35,7 +35,7 @@ client.on("message", msg => {
   }
 
 });
-client.on("messageDelete", async (msg) => {
+client.on("messageDelete", async(msg) => {
   if (msg.author.bot) return; //Ignores bots' messages
   if (msg.author.id === client.user.id) return; //Ignore own messages
   if (msg.channel.type === "dm") return; //Ignores messages from DMs
@@ -43,7 +43,7 @@ client.on("messageDelete", async (msg) => {
 
   try {
     const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`);
-    if(!row) {
+    if (!row) {
       await sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
       console.log("Could not find the row, so created a new one for the channel!");
     } else {
