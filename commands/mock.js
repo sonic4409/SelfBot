@@ -1,23 +1,7 @@
-exports.run = (client, msg, date, Discord, args) => {
-  const mockify = (input) => {
-    var out = "";
-    var k = Math.floor(Math.random() * 3) + 1;
-
-    for (let i = 0; i < input.length; i++) {
-      if (k == 0) {
-        out += input[i].toUpperCase();
-        k = Math.floor(Math.random() * 3) + 1;
-        continue;
-      } else if (k > 0) {
-        out += input[i];
-        k--;
-      }
-    }
-    return out;
+exports.run = async (client, msg, date, Discord, args) => {
+  const mockify = async (input) => {
+    return await input.split("").map((value, index) => index % 2 ? value.toUpperCase() : value.toLowerCase()).join("");
   };
-  /*const getRndInteger = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-  };*/
-  msg.edit(mockify(args.join(" ")));
+  await msg.edit(mockify(args.join(" ")));
   console.log(mockify(`[${date}] Some text has been mockified!`));
 };
