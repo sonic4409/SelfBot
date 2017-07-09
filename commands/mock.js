@@ -19,4 +19,5 @@ exports.run = (client, msg, date, Discord, args) => {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   };*/
   msg.edit(mockify(args.join(" ")));
+  console.log(mockify(`[${date}] Some text has been mockified!`));
 };
