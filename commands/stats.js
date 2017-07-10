@@ -8,7 +8,6 @@ exports.run = async (client, msg, date, Discord, args, math, forecast, sql, mome
     .setTimestamp()
     .addField("Memory", `${(process.memoryUsage().heapUsed / 1000000).toFixed(2)}MB`, true)
     .addField("Uptime", `${moment.duration(client.uptime).humanize().charAt(0).toUpperCase()}${moment.duration(client.uptime).humanize().slice(1)}`, true);
-  await msg.delete();
-  await msg.channel.send({embed});
+  msg.edit({embed});
   console.log(`[${date}] Bot stats were viewed!`);
 };
