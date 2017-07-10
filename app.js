@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const info = require("./package.json");
+const moment = require("moment"); // Date/time formatting
+const tz = require("moment-timezone"); // Eslint doesn't like this :(
 const math = require("mathjs"); //Set up Calculator
 const DarkSky = require("dark-sky");
 const forecast = new DarkSky(config.darksky);
@@ -15,7 +17,7 @@ console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.ver
 
 client.on("message", msg => {
   //Set the Time
-  var date = new Date().toLocaleString();
+  var date = moment(new Date()).tz(config.locale).format("DD/MM/YYYY, HH:mm:ss z");
   const args = msg.content.split(" "); // let args = msg.content.split(" ").slice(1);
 
   if (!msg.content.startsWith(config.prefix)) return;
@@ -28,10 +30,10 @@ client.on("message", msg => {
 
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
+    commandFile.run(client, msg, date, Discord, args, math, forecast, sql, moment);
 
   } catch (err) {
-    return console.error(err); // Do something with tags here
+    return console.error(err);
   }
 
 });
@@ -63,7 +65,7 @@ client.on("warn", console.warn);
 client.on("disconnect", console.warn);
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.username}! Serving ${client.users.size} users!`);
+  console.log(`Logged in as ${client.user.username}! Serving ${client.guilds.size} guilds!`);
 });
 
 client.login(config.token);
