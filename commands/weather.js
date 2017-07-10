@@ -42,8 +42,7 @@ exports.run = async(client, msg, date, Discord, args, math, forecast) => {
       .addField(`${cWeatherIcon} Current:`, `Summary: ${currentSummary}\nTemperature: ${response["currently"].temperature}°C\nFeels Like: ${response["currently"].apparentTemperature}°C\nChance of Precipitation: ${precipPercentage}%\nHumidity: ${humidityPercentage}%`, true)
       .addField(`${dWeatherIcon} Daily:`, `Summary: ${dailySummary}`, true)
       .addField(`${hWeatherIcon} Hourly:`, `Summary: ${hourlySummary}`, true);
-    msg.delete();
-    msg.channel.send("", {embed});
+    msg.edit({embed});
     //msg.channel.sendEmbed(richEmbed);
     console.log(`[${date}] Weather command used!`);
   } catch (err) {
