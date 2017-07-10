@@ -19,10 +19,7 @@ exports.run = async(client, msg, date, Discord, args) => {
           .setTitle(`Image Result For: **${search}**`)
           .setDescription(image)
           .setImage(image);
-        msg.delete();
-        msg.channel.send("", {
-          embed
-        });
+        msg.edit({embed});
         console.log(`[${date}] Searched for '${search}'`);
       }
 
