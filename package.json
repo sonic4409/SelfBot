@@ -8,12 +8,16 @@
     "discord.js": "^11.1.0",
     "google-images": "^2.1.0",
     "mathjs": "^3.12.1",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "node-pre-gyp": "^0.6.36",
     "raven": "^2.1.0",
-    "sqlite": "^2.8.0"
+    "sqlite": "^2.8.0",
+    "sqlite3": "^3.1.8"
   },
   "scripts": {
     "preinstall": "npm install pm2 -g",
-    "start": "pm2 start app.js -i max --attach"
+    "start": "pm2 start app.js --attach"
   },
   "devDependencies": {},
   "repository": {

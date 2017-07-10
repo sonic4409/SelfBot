@@ -11,6 +11,7 @@ To set up your bot, you'll need create a `config.json` file with this inside:
 {
    "token": "", // Discord Bot Token
    "prefix": "", // Bot Prefix
+   "locale": "", // Region as found on https://momentjs.com/timezone/. e.g. Australia/Perth
    "ravenDSN": "", //Sentry.io DSN Link
    "darksky": "", // DarkSky Weather API Key
    "googleCSE": "", // Google Custom Search Engine Key
