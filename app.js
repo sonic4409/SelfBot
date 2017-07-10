@@ -31,7 +31,7 @@ client.on("message", msg => {
     commandFile.run(client, msg, date, Discord, args, math, forecast, sql);
 
   } catch (err) {
-    return console.error(err);
+    return console.error(err); // Do something with tags here
   }
 
 });
@@ -63,7 +63,7 @@ client.on("warn", console.warn);
 client.on("disconnect", console.warn);
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.username}!`);
+  console.log(`Logged in as ${client.user.username}! Serving ${client.users.size} users!`);
 });
 
 client.login(config.token);
