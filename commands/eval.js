@@ -1,25 +1,21 @@
 exports.run = async(client, msg, date, Discord, args, math, forecast, sql, moment) => {
-  const clean = async(text) => {
-    if (text && text.constructor.name == "Promise")
-      text = await text;
-    if (typeof evaled !== "string")
-      text = require("util").inspect(text, {depth: 0});
-    text = text
-      .replace(/`/g, "`" + String.fromCharCode(8203))
-      .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(client.token, "Nope");
-    return text;
+  const clean = text => {
+    if (typeof (text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(new RegExp(client.token, "g"), "Nope");
+    else return text;
   };
-  var code = args.join(" ");
   try {
-    let evaled = eval(code);
-    const output = await clean(evaled);
+    var code = args.join(" ");
+    let evaled = await eval(code);
+
+    if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
+
     else if (evaled.length > 2000) {
       evaled = `Output was too long... ${evaled.length} characters!`;
-      console.log(`[${date}] A LONGE OUTPUT INCOMING!!!\n\n${output.stack}`);
+      console.log(`[${date}] A LONGE OUTPUT INCOMING!!!\n\n${evaled.stack}`);
     }
 
-    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${output}\n\`\`\``);
+    msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
 
     console.log(`[${date}] An eval command was used!`);
   } catch (err) {
