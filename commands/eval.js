@@ -10,9 +10,9 @@ exports.run = async(client, msg, date, Discord, args, math, forecast, sql, momen
 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
 
-    else if (evaled.length > 2000) {
+    if (evaled.length > 2000) {
       evaled = `Output was too long... ${evaled.length} characters!`;
-      console.log(`[${date}] A LONGE OUTPUT INCOMING!!!\n\n${evaled.stack}`);
+      console.log(`[${date}] LONG OUTPUT\n\n${evaled.stack}`);
     }
 
     msg.edit(`:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${clean(evaled)}\n\`\`\``);
