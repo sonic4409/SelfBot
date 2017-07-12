@@ -8,7 +8,7 @@ exports.run = async(client, msg, date, Discord, args, math, forecast, sql, momen
     var code = args.join(" ");
     let evaled = await eval(code);
 
-    if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
+    if (typeof evaled !== "string") evaled = require("util").inspect(evaled, {depth: 0});
 
     if (evaled.length > 2000) {
       evaled = `Output was too long... ${evaled.length} characters!`;
