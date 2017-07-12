@@ -1,5 +1,5 @@
 exports.run = async(client, msg, date, Discord, args, math, forecast, sql, moment) => {
-  const clean = text => {
+  const clean = async(text) => {
     if (text && text.constructor.name == "Promise")
       text = await text;
     if (typeof evaled !== "string")
