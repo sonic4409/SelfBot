@@ -9,7 +9,8 @@ exports.run = async(client, msg, date, Discord, args, math) => {
       const embed = await new Discord.RichEmbed()
         .setTitle("CALCULATING")
         .setColor(3447003)
-        .addField(`:inbox_tray: **INPUT:**\`\`\`xl\n${text}\n\`\`\`\n:outbox_tray: **RESULT**\n\`\`\`xl\n${result}\n\`\`\``);
+        .addField(`:inbox_tray: **INPUT:**\`\`\`xl\n${text}\n\`\`\``)
+        .addField(`:outbox_tray: **RESULT**\n\`\`\`xl\n${result}\n\`\`\``);
       msg.edit({embed});
       console.log(`[${date}] I can math good!`);
     }
