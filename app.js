@@ -4,7 +4,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const info = require("./package.json");
 const moment = require("moment"); // Date/time formatting
-const tz = require("moment-timezone"); // Eslint doesn't like this :(
+require("moment-timezone"); // Eslint doesn't like this :(
 const math = require("mathjs"); //Set up Calculator
 const DarkSky = require("dark-sky");
 const forecast = new DarkSky(config.darksky);
