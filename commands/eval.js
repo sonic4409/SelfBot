@@ -1,7 +1,7 @@
 exports.run = async(client, msg, date, Discord, args, math, forecast, sql, moment) => {
   const clean = text => {
     if (typeof (text) === "string")
-      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(client.token, "Nope").replace(client.user.email, "fake@email.com");
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(client.token, "Nope").replace(client.user.email, "Nope");
     else return text;
   };
   try {
