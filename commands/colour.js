@@ -1,7 +1,7 @@
 exports.run = async(client, msg, date, Discord, args) => {
   var colour = args.join(" ");
 
-  if (((colour.indexOf("#") === 0) && colour.length === 7) || (!isNaN(colour) && colour.length <= 8 && colour <= 16777215)) {
+  if (((colour.indexOf("#") === 0) && colour.length === 7) || (!isNaN(colour) && colour.length <= 8 && colour < 16777215)) {
     const embed = await new Discord.RichEmbed()
       .setColor(colour)
       .setDescription(colour);
