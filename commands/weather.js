@@ -8,12 +8,18 @@ const gcOptions = {
   apiKey: process.env.googleGEOCODE, // for Mapquest, OpenCage, Google Premier
   formatter: null         // 'gpx', 'string', ...
 };
-const geocoder = NodeGeocoder(gcOptions);
 
 exports.run = async (client, msg, args, date) => {
   const forecast = new DarkSky(process.env.darksky);
+  const geocoder = NodeGeocoder(gcOptions);
+  const search = args.join(" ");
   try {
-    const location = await geocoder.geocode(args.join(" "));
+    const location = await geocoder.geocode(search);
+    if (!location) {
+      const m = await msg.edit("Couldn't find that place!");
+      m.delete(2000);
+      return;
+    }
     const lat = location.latitude;
     const long = location.longitude;
 
