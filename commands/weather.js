@@ -68,7 +68,7 @@ exports.run = async (client, msg, args, date) => {
 
 exports.conf = {
   enabled: true,
-  aliases: []
+  aliases: ["forecast"]
 };
 
 exports.help = {
