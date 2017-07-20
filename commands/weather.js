@@ -1,16 +1,17 @@
 const Discord = require("discord.js");
 const DarkSky = require("dark-sky");
 const NodeGeocoder = require("node-geocoder");
-const gcOptions = {
-  provider: "google",
-  // Optional depending on the providers
-  httpAdapter: "https", // Default
-  apiKey: process.env.googleGEOCODE, // for Mapquest, OpenCage, Google Premier
-  formatter: null         // 'gpx', 'string', ...
-};
 
 exports.run = async (client, msg, args, date) => {
   const forecast = new DarkSky(process.env.darksky);
+  const gcOptions = {
+  provider: "google",
+    // Optional depending on the providers
+    httpAdapter: "https", // Default
+    apiKey: process.env.googleGEOCODE, // for Mapquest, OpenCage, Google Premier
+    formatter: null         // 'gpx', 'string', ...
+  };
+
   const geocoder = NodeGeocoder(gcOptions);
   const search = args.join(" ");
   try {
@@ -20,12 +21,10 @@ exports.run = async (client, msg, args, date) => {
       m.delete(2000);
       return;
     }
-    const lat = location.latitude;
-    const long = location.longitude;
 
     const response = await forecast
-      .latitude(lat)
-      .longitude(long)
+      .latitude(location.latitude)
+      .longitude(location.latitude)
       .units("ca") //Celsius
       .language("en") //English
       .get();
