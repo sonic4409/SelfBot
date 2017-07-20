@@ -76,5 +76,5 @@ exports.conf = {
 exports.help = {
   name: "weather",
   description: "Get the weather of Perth, Australia",
-  usage: "weather"
+  usage: "\`weather [place]\`"
 };
