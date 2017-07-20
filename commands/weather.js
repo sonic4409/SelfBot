@@ -52,10 +52,10 @@ exports.run = async (client, msg, args, date) => {
       dWeatherIcon = icons.get(response["daily"].icon);
       hWeatherIcon = icons.get(response["hourly"].icon);
     }
-
+    
     const embed = await new Discord.RichEmbed()
       .setColor(0x3498DB)
-      .setTitle(`Weather for *${response.timezone}*`)
+      .setTitle(`Weather for *${location[0].formattedAddress}*`)
       .addField(`${cWeatherIcon} Current:`, `Summary: ${response["currently"].summary}\nTemperature: ${response["currently"].temperature}°C\nFeels Like: ${response["currently"].apparentTemperature}°C\nChance of Precipitation: ${response["currently"].precipProbability * 100}%\nHumidity: ${response["currently"].humidity * 100}%`, true)
       .addField(`${dWeatherIcon} Daily:`, `Summary: ${response["daily"].summary}`, true)
       .addField(`${hWeatherIcon} Hourly:`, `Summary: ${response["hourly"].summary}`, true);
