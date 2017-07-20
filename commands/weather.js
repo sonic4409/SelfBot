@@ -23,7 +23,7 @@ exports.run = async (client, msg, args, date) => {
 
     const response = await forecast
       .latitude(location[0].latitude)
-      .longitude(location[0].latitude)
+      .longitude(location[0].longitude)
       .units("ca") //Celsius
       .language("en") //English
       .get();
