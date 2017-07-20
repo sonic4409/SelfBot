@@ -1,9 +1,9 @@
-exports.run = async(client, msg, date, Discord, args) => {
-  let messagecount = parseInt(args[0]);
+exports.run = async(client, msg, args, date) => {
+  const messagecount = parseInt(args[0]);
 
   if (messagecount <= 100 && !isNaN(messagecount)) {
     // get the channel logs
-    let messages = await msg.channel.fetchMessages({
+    const messages = await msg.channel.fetchMessages({
       limit: 100
     });
 
@@ -12,13 +12,23 @@ exports.run = async(client, msg, date, Discord, args) => {
     msg_array = msg_array.filter(m => m.author.id === client.user.id);
     // limit to the requested number + 1 for the command message
     msg_array.length = messagecount + 1;
-    // Has to delete messages individually. Cannot use `deleteMessages()` on selfbots.
     msg_array.map(m => m.delete() /*.catch(console.error)*/ );
 
-    console.log(`[${date}] ${messagecount} messages were pruned!`);
+    console.log(`[${date}] Success! ${messagecount} messages were pruned!`);
   } else {
-    let m = await msg.edit(":warning: **Invalid Parameters!**");
+    console.log(`[${date}] ... But invalid parameters were provided!`);
+    const m = await msg.edit(":warning: **Invalid Parameters!** :warning:");
     m.delete(2000);
-    console.log(`[${date}] Prune command failed due to invalid parameters!`);
   }
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: []
+};
+
+exports.help = {
+  name: "prune",
+  description: "Prunes up to 100 of your own messages.",
+  usage: "\`prune [number]\`"
 };

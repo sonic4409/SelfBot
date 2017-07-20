@@ -1,4 +1,14 @@
-exports.run = (client, msg, date) => {
+exports.run = (client, msg) => {
   msg.edit("¯\\_(ツ)_/¯");
-  console.log(`[${date}] Shrug command was used!`);
+};
+
+exports.conf = {
+  enabled: false,
+  aliases: []
+};
+
+exports.help = {
+  name: "shrug",
+  description: "It's a shortcut.",
+  usage: "shrug"
 };

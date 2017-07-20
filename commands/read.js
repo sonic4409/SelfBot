@@ -1,14 +1,24 @@
-exports.run = async(client, msg, date, Discord, args) => {
+exports.run = async(client, msg, args, date) => {
   if (args[0] === "all") {
-    client.guilds.forEach(g => g.acknowledge());
-    let m = await msg.edit("Marked all guilds as read!");
+    await client.guilds.forEach(g => g.acknowledge());
+    console.log(`[${date}] Success! Marked all guilds as read!`);
+    const m = await msg.edit("Marked all guilds as read!");
     m.delete(2000);
-    console.log(`[${date}] Marked all guilds as read!`);
   } else {
-    msg.guild.acknowledge();
-    let m = await msg.edit("Marked all channels in the guild as read!");
+    await msg.guild.acknowledge();
+    console.log(`[${date}] Success! Marked all channels in the guild as read!`);
+    const m = await msg.edit("Marked all channels in the guild as read!");
     m.delete(2000);
-    console.log(`[${date}] Marked all channels in the guild as read!`);
   }
+};
 
+exports.conf = {
+  enabled: true,
+  aliases: [],
+};
+
+exports.help = {
+  name: "read",
+  description: "Marks the guild or all guilds as read.",
+  usage: "\`read\` to mark the guild as read OR \`read all\` to mark ALL guilds as read"
 };

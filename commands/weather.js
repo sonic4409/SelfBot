@@ -1,18 +1,31 @@
-exports.run = async (client, msg, date, Discord, args, math, forecast) => {
+const Discord = require("discord.js");
+const DarkSky = require("dark-sky");
+const NodeGeocoder = require("node-geocoder");
+const gcOptions = {
+  provider: "google",
+  // Optional depending on the providers
+  httpAdapter: "https", // Default
+  apiKey: process.env.googleGEOCODE, // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+const geocoder = NodeGeocoder(gcOptions);
+
+exports.run = async (client, msg, args, date) => {
+  const forecast = new DarkSky(process.env.darksky);
   try {
+    const location = await geocoder.geocode(args.join(" "));
+    const lat = location.latitude;
+    const long = location.longitude;
+
     const response = await forecast
-      .latitude("-31.9505")
-      .longitude("115.8605")
+      .latitude(lat)
+      .longitude(long)
       .units("ca") //Celsius
       .language("en") //English
       .get();
-    let timezone = response.timezone;
-    let currentSummary = response["currently"].summary;
-    let dailySummary = response["daily"].summary;
-    let hourlySummary = response["hourly"].summary;
 
     //ICONS BUT IT'S IN A MAP SO IT'S AMAZING
-    let icons = new Map([
+    const icons = new Map([
       ["clear-day", ":white_sun_small_cloud: :white_sun_small_cloud:"],
       ["clear-night", ":milky_way: :milky_way:"],
       ["rain", ":cloud_rain: :cloud_rain:"],
@@ -27,24 +40,35 @@ exports.run = async (client, msg, date, Discord, args, math, forecast) => {
     ]);
 
     //Get the Icons
+    let cWeatherIcon;
+    let dWeatherIcon;
+    let hWeatherIcon;
     if (icons.has(response["currently"].icon)) {
-      var cWeatherIcon = icons.get(response["currently"].icon);
-      var dWeatherIcon = icons.get(response["daily"].icon);
-      var hWeatherIcon = icons.get(response["hourly"].icon);
+      cWeatherIcon = icons.get(response["currently"].icon);
+      dWeatherIcon = icons.get(response["daily"].icon);
+      hWeatherIcon = icons.get(response["hourly"].icon);
     }
-
-    let humidityPercentage = parseInt(response["currently"].humidity * 100);
-    let precipPercentage = parseInt(response["currently"].precipProbability * 100);
 
     const embed = await new Discord.RichEmbed()
       .setColor(0x3498DB)
-      .setTitle(`Weather for *${timezone}*`)
-      .addField(`${cWeatherIcon} Current:`, `Summary: ${currentSummary}\nTemperature: ${response["currently"].temperature}°C\nFeels Like: ${response["currently"].apparentTemperature}°C\nChance of Precipitation: ${precipPercentage}%\nHumidity: ${humidityPercentage}%`, true)
-      .addField(`${dWeatherIcon} Daily:`, `Summary: ${dailySummary}`, true)
-      .addField(`${hWeatherIcon} Hourly:`, `Summary: ${hourlySummary}`, true);
+      .setTitle(`Weather for *${response.timezone}*`)
+      .addField(`${cWeatherIcon} Current:`, `Summary: ${response["currently"].summary}\nTemperature: ${response["currently"].temperature}°C\nFeels Like: ${response["currently"].apparentTemperature}°C\nChance of Precipitation: ${response["currently"].precipProbability * 100}%\nHumidity: ${response["currently"].humidity * 100}%`, true)
+      .addField(`${dWeatherIcon} Daily:`, `Summary: ${response["daily"].summary}`, true)
+      .addField(`${hWeatherIcon} Hourly:`, `Summary: ${response["hourly"].summary}`, true);
     msg.edit({embed});
-    console.log(`[${date}] Weather command used!`);
+    console.log(`[${date}] Success!`);
   } catch (err) {
-    console.log(err);
+    console.log(`Failed... Error:\n${err}`);
   }
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: []
+};
+
+exports.help = {
+  name: "weather",
+  description: "Get the weather of Perth, Australia",
+  usage: "weather"
 };

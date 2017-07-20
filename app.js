@@ -1,73 +1,54 @@
-const Raven = require("raven");
 const Discord = require("discord.js");
+
 const client = new Discord.Client();
-const config = require("./config.json");
-const info = require("./package.json");
-const moment = require("moment"); // Date/time formatting
-require("moment-timezone"); // Eslint doesn't like this :(
-const math = require("mathjs"); //Set up Calculator
-const DarkSky = require("dark-sky");
-const forecast = new DarkSky(config.darksky);
+// client.config = require("./config.json");
+client.info = require("./package.json");
+
+console.log(`Starting SelfBot... (v${client.info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
+
+const Raven = require("raven");
+Raven.config(process.env.ravenDSN).install();
+
 const sql = require("sqlite");
-Raven.config(config.ravenDSN).install();
 sql.open("./db/deletedMessages.sqlite");
 
-//Cool Startup Message
-console.log(`Starting SelfBot... (v${info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
+const { promisify } = require("util");
+const readdir = promisify(require("fs").readdir);
 
-client.on("message", msg => {
-  //Set the Time
-  var date = moment(new Date()).tz(config.locale).format("DD/MM/YYYY, HH:mm:ss z");
-  const args = msg.content.split(" "); // let args = msg.content.split(" ").slice(1);
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
 
-  if (!msg.content.startsWith(config.prefix)) return;
+require("./modules/functions.js")(client);
 
-  //Don't run if the command is sent by another user
-  if (msg.author !== client.user) return;
-
-  //COMMAND Handler
-  const command = args.shift().slice(config.prefix.length);
-
-  try {
-    let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, msg, date, Discord, args, math, forecast, sql, moment);
-
-  } catch (err) {
-    return console.error(err);
-  }
-
-});
-client.on("messageDelete", async(msg) => {
-  if (msg.author.bot) return; //Ignores bots' messages
-  if (msg.author.id === client.user.id) return; //Ignore own messages
-  if (msg.channel.type === "dm") return; //Ignores messages from DMs
-  if (msg.length === 0) return;
-
-  try {
-    const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}'`);
-    if (!row) {
-      await sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
-      console.log("Could not find the row, so created a new one for the channel!");
-    } else {
-      await sql.run("REPLACE INTO deletedMessages (userId, channelId, msgContent) VALUES(?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
-      console.log("Updated the row!");
+(async function() {
+  //Load commands into memory from "./commands"
+  const commandFiles = await readdir("./commands");
+  console.log(`Loading ${commandFiles.length} files!`);
+  commandFiles.forEach(file => {
+    try {
+      const props = require(`./commands/${file}`);
+      console.log(`Loading Command: ${props.help.name}.`);
+      client.commands.set(props.help.name, props);
+      props.conf.aliases.forEach(alias => {
+        client.aliases.set(alias, props.help.name);
+      });
+    } catch (err) {
+      console.log(`Unable to load command ${file}: \n${err}`);
     }
-  } catch (err) {
-    console.error;
-    await sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
-    await sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
-    console.log("Created Table!"); //Create Table for Deleted Messages
-  }
-});
+  });
 
-client.on("error", console.error);
-client.on("warn", console.warn);
-client.on("disconnect", console.warn);
+  const evtFiles = await readdir("./events/");
+  console.log(`Loading a total of ${evtFiles.length} events.`);
+  evtFiles.forEach(file => {
+    try {
+      const eventName = file.split(".")[0];
+      const event = require(`./events/${file}`);
+      client.on(eventName, event.bind(null, client));
+      delete require.cache[require.resolve(`./events/${file}`)];
+    } catch (err) {
+      console.log(`Unable to load event ${file}: \n${err}.`);
+    }
+  });
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.username}! Serving ${client.guilds.size} guilds!`);
-});
-
-client.login(config.token);
-
-process.on("unhandledRejection", console.error);
+  client.login(process.env.token);
+}());

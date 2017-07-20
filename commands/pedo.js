@@ -1,4 +1,14 @@
-exports.run = (client, msg, date) => {
+exports.run = (client, msg) => {
   msg.edit("ʕ•ᴥ•ʔ");
-  console.log(`[${date}] Pedo command was used!`);
+};
+
+exports.conf = {
+  enabled: false,
+  aliases: []
+};
+
+exports.help = {
+  name: "pedo",
+  description: "It's a shortcut.",
+  usage: "\`pedo\`"
 };

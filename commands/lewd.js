@@ -1,41 +1,46 @@
-exports.run = async(client, msg, date, Discord, args) => {
-  const config = require("../config.json");
-  const GoogleImages = require("google-images");
-  const gClient = new GoogleImages(config.googleCSE, config.googleAPI);
+const Discord = require("discord.js");
+const GoogleImages = require("google-images");
 
-  let search = args.join(" ");
+exports.run = async(client, msg, args, date) => {
+  const gClient = new GoogleImages(process.env.googleCSE, process.env.googleAPI);
+  const search = args.join(" ");
 
   if (search.length > 0) {
     try {
-      const response = await gClient.search(search, {
-        safe: "off"
-      });
+      const response = await gClient.search(search, {safe: "off"});
       if (!response) {
-        let m = await msg.edit("Nothing Found!");
+        console.log(`[${date}] ... but nothing was found!`);
+        const m = await msg.edit("Nothing Found!");
         m.delete(2000);
-        return;
       } else {
-        let image = response[0].url;
         const embed = await new Discord.RichEmbed()
           .setColor(0x3498DB)
-          .setTitle(`NSFW Image Result For: **${search}**`)
-          .setDescription(image)
-          .setImage(image);
-        msg.delete();
-        msg.channel.send("", {
-          embed
-        });
-        console.log(`[${date}] Searched for '${search}'`);
+          .setTitle(`Probably NSFW Image Result For: **${search}**`)
+          .setDescription(response[0].url)
+          .setImage(response[0].url);
+        msg.edit({embed});
+        console.log(`[${date}] Success!`);
       }
 
     } catch (err) {
-      let m = await msg.edit("Something went terribly wrong...");
+      console.log(`Fail... Error:\n${err}`);
+      const m = await msg.edit("Something went terribly wrong... It's probably not your fault...");
       m.delete(2000);
-      console.error(err);
     }
   } else {
-    let m = await msg.edit(":warning: Invalid Parameters!");
+    console.log(`[${date}] ... but there was nothing provided to search for!`);
+    const m = await msg.edit(":warning: Invalid Parameters! :warning:");
     m.delete(2000);
-    console.log(`[${date}] Search command failed due to invalid parameters!`);
   }
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: []
+};
+
+exports.help = {
+  name: "lewd",
+  description: "Google Search for an image, but WITHOUT SafeSearch OWO",
+  usage: "\`lewd [query]\`"
 };

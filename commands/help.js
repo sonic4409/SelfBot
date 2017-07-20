@@ -1,8 +1,39 @@
-exports.run = async(client, msg, date, Discord) => {
-  const embed = await new Discord.RichEmbed()
-    .setColor(0x3498DB)
-    .setTitle("SelfBot Commands \(WIP\)")
-    .setDescription("**info** - Displays info on the SelfBot\n**shortcuts** - Displays a list of text faces/emojis you can use\n**prune** - Deletes you own messages up to a maximum of 100\n**hug** - Hug someone/something!\n**embed** - Embeds your message\n **colour** - Gives a preview of any Hex/Decimal colour\n**avatar** - Shows your avatar\n**weather** - Shows weather of Perth\n**img** - Google searches an image\n**lewd** - Google images but without SafeSearch owo\n**weather** - Get the weather of Perth\n**mock** - thaT aNnoYiNg spoNgEbOb moCkinG meMe\n**covfefe** - Covfefify a word\n**read** - Marks all channels in the current guild as read, do **read all** to mark all guilds as read\n**undel** - Sends the most recent deleted message in the channel (kinda slow)\n**reload** - Reload any command\n**stats** - View bot stats\n**calc**- Big boy calculator, can also do some unit conversions, do **calc help** for examples\n**eval** - Run code, can also be used as a basic calculator");
-  msg.channel.send({embed});
-  console.log(`[${date}] Help menu was displayed!`);
+const Discord = require("discord.js");
+exports.run = async(client, msg, args, date) => {
+  if (!args[0]) {
+    const enabledCommands = client.commands.filter(c => c.conf.enabled === true);
+    const commandNames = enabledCommands.keyArray();
+    const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
+    const embed = await new Discord.RichEmbed()
+      .setColor(0x3498DB)
+      .setTitle("SelfBot Command List")
+      .addField(`Use ${process.env.prefix}help <commandname> for details on a command`, `${enabledCommands.map(c => `${process.env.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: ${c.help.description}`).join("\n")}`);
+    msg.edit({embed});
+  } else {
+    let command = args[0];
+    if (client.commands.has(command)) {
+      command = client.commands.get(command);
+      const embed = await new Discord.RichEmbed()
+        .setColor(0x3498DB)
+        .setTitle(`Help for __${command.help.name}__ command`)
+        .addField("Description", command.help.description)
+        .addField("Usage", command.help.usage);
+      msg.edit({embed});
+    } else {
+      console.log(`[${date}] ... but the command name was invalid`);
+      const m = await msg.edit("We couldn't find that command!");
+      m.delete(2000);
+    }
+  }
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: []
+};
+
+exports.help = {
+  name: "help",
+  description: "Displays all the available commands.",
+  usage: "\`help [command]\`"
 };
