@@ -11,7 +11,7 @@ exports.run = async (client, msg, date, args) => {
 	}
 };
 
-exports.config = {
+exports.conf = {
   enabled: true,
 	aliases: ["run", "e"]
 };
