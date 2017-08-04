@@ -7,12 +7,12 @@ To install dependencies, run `npm install`
 
 # Config
 To set up your bot, you'll need create a `config.json` file with this inside:
-```
+```json
 {
    "token": "", // Discord Bot Token
    "prefix": "", // Bot Prefix
    "locale": "", // Region as found on https://momentjs.com/timezone/. e.g. Australia/Perth
-   "ravenDSN": "", //Sentry.io DSN Link
+   "ravenDSN": "", //Sentry.io DSN Link (optional)
    "darksky": "", // DarkSky Weather API Key
    "googleCSE": "", // Google Custom Search Engine Key
    "googleAPI": "" // Google API Key
@@ -22,4 +22,8 @@ To set up your bot, you'll need create a `config.json` file with this inside:
 To start the bot, run:
 ```
 pm2 start app.js --attach
+```
+OR
+```
+npm start
 ```
