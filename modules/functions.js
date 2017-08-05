@@ -30,7 +30,7 @@ module.exports = (client) => {
   client.mockify = (text) => {
     return text.split("").map((value, index) => index % 2 ? value.toUpperCase() : value.toLowerCase()).join(""); // SOMEBODY ONCE TOLD ME THAT this is better than 20 lines of code
   };
-  client.covfefify = string => {
+  client.covfefify = (string) => {
     let a;
     let b;
     let c;
