@@ -50,7 +50,7 @@ require("./modules/functions.js")(client);
     }
   });
   
-	client.once("message", msg { // Put this somewhere later
+	client.once("message", msg => { // Put this somewhere later
 		global.message = msg;
 	}
   client.login(process.env.token);
