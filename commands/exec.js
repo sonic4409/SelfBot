@@ -5,6 +5,7 @@ exports.run = (client, msg, args, date) => {
 			const m = await msg.edit(`It failed ecks dee:\n${stderr}`);
 			m.delete(5000);
 			console.error(`[${date}] Fail... \n${error}`);
+			return;
 		}
 		msg.edit(`:inbox_tray: **INPUT:**\n\`\`\`xl\n${args.join(" ")}\n\`\`\`:outbox_tray: **OUTPUT:**\n\`\`\`xl\n${client.clean(stdout)}\n\`\`\``);
 		console.log(`[${date}] Success!`);
