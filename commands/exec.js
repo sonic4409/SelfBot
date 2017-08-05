@@ -6,9 +6,9 @@ exports.run = async (client, msg, date, args) => {
 			m.delete(3000);
 			console.error(`[$date] Fail... \n${error}`);
 			return;
-		} else {
-			msg.edit(`:inbox_tray: **INPUT:**\n\`\`\`xl\n${args.join(" ")}\n\`\`\`:outbox_tray: **OUTPUT:**\n\`\`\`xl\n${client.clean(stdout)}\n\`\`\``);
 		}
+		msg.edit(`:inbox_tray: **INPUT:**\n\`\`\`xl\n${args.join(" ")}\n\`\`\`:outbox_tray: **OUTPUT:**\n\`\`\`xl\n${client.clean(stdout)}\n\`\`\``);
+		console.log(`[${date}] Success!`);
 	});
 };
 
