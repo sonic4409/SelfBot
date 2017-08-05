@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 exports.run = async (client, msg, date, args) => {
-	exec(args.join(" "), (error, stdout, stderr) {
+	exec(args.join(" "), (error, stdout, stderr) => {
 		if (error) {
 			const m = await msg.edit("It failed ecks dee");
 			m.delete(3000);
