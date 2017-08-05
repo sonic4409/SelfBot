@@ -49,6 +49,9 @@ require("./modules/functions.js")(client);
       console.log(`Unable to load event ${file}: \n${err}.`);
     }
   });
-
+  
+	client.once("message", msg { // Put this somewhere later
+		global.message = msg;
+	}
   client.login(process.env.token);
 }());
