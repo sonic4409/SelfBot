@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 exports.run = (client, msg, args, date) => {
-  if (!args) return;
+  if (args.length === 0) return;
   exec(args.join(" "), async(error, stdout, stderr) => {
     if (error) {
       msg.edit(`It failed ecks dee:\n${stderr}`);
