@@ -1,8 +1,8 @@
 exports.run = async(client, msg, args, date) => {
   try {
-    if (!args) return msg.edit("Nothing was provided to run!");
-    
     let evaled = await eval(args.join(" "));
+    
+    if (!args) return evaled = "No code was provided to run!";
 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled, {depth: 0});
 
