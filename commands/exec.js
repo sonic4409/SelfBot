@@ -16,12 +16,12 @@ exports.run = (client, msg, args, date) => {
 };
 
 exports.conf = {
-	enabled: true,
-	aliases: ["run", "e"]
+  enabled: true,
+  aliases: ["run", "e"]
 };
 
 exports.help = {
-	name: "exec",
-	description: "Run code in the terminal",
-	usage: "/`exec [code]/`"
+  name: "exec",
+  description: "Run code in the terminal",
+  usage: "/`exec [code]/`"
 };
