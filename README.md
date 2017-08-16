@@ -5,7 +5,7 @@ Discord SelfBot made in Discord.js.
 Make sure you have Nodejs installed.
 To install dependencies, run `npm install`
 
-# Config
+# Config im not done yet I haven't updated in ages aaaaaaa
 To set up your bot, you'll need create a `config.json` file with this inside:
 ```
 {
