@@ -1,9 +1,6 @@
 const { exec } = require("child_process");
 exports.run = (client, msg, args, date) => {
-  if (!args) {
-    const m = await msg.edit("**:warning: Nothing was provided to run! :warning:**");
-    m.delete(3000);
-  }
+  if (!args) return;
   exec(args.join(" "), async(error, stdout, stderr) => {
     if (error) {
       msg.edit(`It failed ecks dee:\n${stderr}`);
