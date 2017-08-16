@@ -2,7 +2,7 @@ exports.run = async(client, msg, args, date) => {
   try {
     let evaled = await eval(args.join(" "));
     
-    if (!args) return;
+    if (args.length === 0) return;
 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled, {depth: 0});
 
