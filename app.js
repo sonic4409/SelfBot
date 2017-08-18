@@ -4,27 +4,16 @@ const client = new Discord.Client();
 
 const fs = require("fs");
 
-fs.open("./config.json", "wx", (err) => {
-  if (err) {
-    if (err.code === "EEXIST") {
-      console.log("Config file already exists! You're probably not hosting on Heroku :^)");
-      return;
-    }
-
-    throw err;
-  }
-
-  fs.writeFile("./config.json", JSON.stringify({
-    token: process.env.token,
-    prefix: process.env.prefix,
-    locale: process.env.locale,
-    ravenDSN: process.env.ravenDSN,
-    darksky: process.env.darksky,
-    googleCSE: process.env.googleCSE,
-    googleAPI: process.env.googleAPI,
-    googleGEOCODE: process.env.googleGEOCODE
-  }));
-});
+fs.writeFile("./config.json", JSON.stringify({
+  token: process.env.token,
+  prefix: process.env.prefix,
+  locale: process.env.locale,
+  ravenDSN: process.env.ravenDSN,
+  darksky: process.env.darksky,
+  googleCSE: process.env.googleCSE,
+  googleAPI: process.env.googleAPI,
+  googleGEOCODE: process.env.googleGEOCODE
+}));
 
 client.config = require("./config.json");
 client.info = require("./package.json");
