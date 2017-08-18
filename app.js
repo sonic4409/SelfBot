@@ -5,14 +5,14 @@ const client = new Discord.Client();
 const fs = require("fs");
 
 fs.writeFile("./config.json", JSON.stringify({
-  "token": process.env.token,
-  "prefix": process.env.prefix,
-  "locale": process.env.locale,
-  "ravenDSN": process.env.ravenDSN,
-  "darksky": process.env.darksky,
-  "googleCSE": process.env.googleCSE,
-  "googleAPI": process.env.googleAPI,
-  "googleGEOCODE": process.env.googleGEOCODE
+  token: process.env.token,
+  prefix: process.env.prefix,
+  locale: process.env.locale,
+  ravenDSN: process.env.ravenDSN,
+  darksky: process.env.darksky,
+  googleCSE: process.env.googleCSE,
+  googleAPI: process.env.googleAPI,
+  googleGEOCODE: process.env.googleGEOCODE
 }));
 
 client.config = require("./config.json");
