@@ -6,11 +6,11 @@ exports.run = async (client, msg, args, date) => {
   const geocoder = NodeGeocoder({
     provider: "google",
     httpAdapter: "https",
-    apiKey: client.config.googleGEOCODE,
+    apiKey: process.env.googleGEOCODE,
     formatter: null
   });
 
-  const forecast = new DarkSky(client.config.darksky);
+  const forecast = new DarkSky(process.env.darksky);
 
   try {
     if (!args.length) {

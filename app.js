@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const fs = require("fs");
+/*
 
 fs.writeFile("./config.json", JSON.stringify({
   token: process.env.token,
@@ -16,12 +17,14 @@ fs.writeFile("./config.json", JSON.stringify({
 }));
 
 client.config = require("./config.json");
+*/
+
 client.info = require("./package.json");
 
 console.log(`Starting SelfBot... (v${client.info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
 const Raven = require("raven");
-Raven.config(client.config.ravenDSN).install();
+Raven.config(process.env.ravenDSN).install();
 
 const sql = require("sqlite");
 sql.open("./db/deletedMessages.sqlite");
@@ -64,5 +67,5 @@ require("./modules/functions.js")(client);
     }
   });
 
-  client.login(client.config.token);
+  client.login(process.env.token);
 }());

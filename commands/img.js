@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const GoogleImages = require("google-images");
 
 exports.run = async(client, msg, args, date) => {
-  const gClient = new GoogleImages(client.config.googleCSE, client.config.googleAPI);
+  const gClient = new GoogleImages(process.env.googleCSE, process.env.googleAPI);
   const search = args.join(" ");
 
   if (search.length > 0) {
