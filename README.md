@@ -5,8 +5,8 @@ Discord SelfBot made in Discord.js.
 Make sure you have Nodejs installed.
 To install dependencies, run `npm install`
 
-# Config im not done yet I haven't updated in ages aaaaaaa
-To set up your bot, you'll need create a `config.json` file with this inside:
+# Config
+To set up your bot, you'll need create a `config.json` file with this inside (of course removing the comments):
 ```
 {
    "token": "", // Discord Bot Token
@@ -15,7 +15,8 @@ To set up your bot, you'll need create a `config.json` file with this inside:
    "ravenDSN": "", //Sentry.io DSN Link (optional)
    "darksky": "", // DarkSky Weather API Key
    "googleCSE": "", // Google Custom Search Engine Key
-   "googleAPI": "" // Google API Key
+   "googleAPI": "", // Google API Key
+   "googleGEOCODE": "" // Google Geocoder Key
 }
 ```
 # Running

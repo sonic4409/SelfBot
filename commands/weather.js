@@ -1,19 +1,23 @@
 const Discord = require("discord.js");
 const DarkSky = require("dark-sky");
 const NodeGeocoder = require("node-geocoder");
-const gcOptions = {
-  provider: "google",
-    // Optional depending on the providers
-    httpAdapter: "https", // Default
-    apiKey: process.env.googleGEOCODE, // for Mapquest, OpenCage, Google Premier
-    formatter: null         // 'gpx', 'string', ...
-};
 
 exports.run = async (client, msg, args, date) => {
-  const forecast = new DarkSky(process.env.darksky);
+  const geocoder = NodeGeocoder({
+    provider: "google",
+    httpAdapter: "https",
+    apiKey: client.config.googleGEOCODE,
+    formatter: null
+  });
 
-  const geocoder = NodeGeocoder(gcOptions);
+  const forecast = new DarkSky(client.config.darksky);
+
   try {
+    if (!args.length) {
+      const m = await msg.edit("You did not provide a location!");
+      m.delete(2000);
+      return;
+    }
     const location = await geocoder.geocode(args.join(" "));
     if (!location) {
       const m = await msg.edit("Couldn't find that place!");
@@ -29,7 +33,7 @@ exports.run = async (client, msg, args, date) => {
       .get();
 
     //ICONS BUT IT'S IN A MAP SO IT'S AMAZING
-    const icons = new Map([
+    const icons = new Map([ // Someone help me this was a bad idea
       ["clear-day", ":white_sun_small_cloud: :white_sun_small_cloud:"],
       ["clear-night", ":milky_way: :milky_way:"],
       ["rain", ":cloud_rain: :cloud_rain:"],
@@ -44,14 +48,9 @@ exports.run = async (client, msg, args, date) => {
     ]);
 
     //Get the Icons
-    let cWeatherIcon;
-    let dWeatherIcon;
-    let hWeatherIcon;
-    if (icons.has(response["currently"].icon)) {
-      cWeatherIcon = icons.get(response["currently"].icon);
-      dWeatherIcon = icons.get(response["daily"].icon);
-      hWeatherIcon = icons.get(response["hourly"].icon);
-    }
+    const cWeatherIcon = icons.get(response["currently"].icon);
+    const dWeatherIcon = icons.get(response["daily"].icon);
+    const hWeatherIcon = icons.get(response["hourly"].icon);
     
     const embed = await new Discord.RichEmbed()
       .setColor(0x3498DB)
@@ -74,5 +73,5 @@ exports.conf = {
 exports.help = {
   name: "weather",
   description: "Get the weather of a city anywhere on Earth.",
-  usage: "\`weather [place]\`"
+  usage: "`weather [place]`"
 };

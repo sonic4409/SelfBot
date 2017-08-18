@@ -30,5 +30,5 @@ exports.conf = {
 exports.help = {
   name: "prune",
   description: "Prunes up to 100 of your own messages.",
-  usage: "\`prune [number]\`"
+  usage: "`prune [number]`"
 };

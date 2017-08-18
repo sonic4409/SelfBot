@@ -20,5 +20,5 @@ exports.conf = {
 exports.help = {
   name: "exec",
   description: "Run code in the terminal",
-  usage: "/`exec [code]/`"
+  usage: "`exec [code]`"
 };

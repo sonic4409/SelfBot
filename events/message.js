@@ -2,10 +2,9 @@ const moment = require("moment"); // Date/time formatting
 require("moment-timezone");
 
 module.exports = (client, msg) => {
-	global.message = msg; // I regret nothing
+  global.message = msg; // I regret nothing
   //Set the Time
   const date = moment(new Date()).tz(process.env.locale).format("DD/MM/YYYY, HH:mm:ss z");
-  // const args = msg.content.split(" "); // let args = msg.content.split(" ").slice(1);
 
   if (!msg.content.startsWith(process.env.prefix)) return;
 

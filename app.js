@@ -1,19 +1,44 @@
 const Discord = require("discord.js");
 
 const client = new Discord.Client();
-// client.config = require("./config.json");
+
+const fs = require("fs");
+
+fs.open("./config.json", "wx", (err) => {
+  if (err) {
+    if (err.code === "EEXIST") {
+      console.log("Config file already exists! You're probably not hosting on Heroku :^)");
+      return;
+    }
+
+    throw err;
+  }
+
+  fs.writeFile("./config.json", JSON.stringify({
+    token: process.env.token,
+    prefix: process.env.prefix,
+    locale: process.env.locale,
+    ravenDSN: process.env.ravenDSN,
+    darksky: process.env.darksky,
+    googleCSE: process.env.googleCSE,
+    googleAPI: process.env.googleAPI,
+    googleGEOCODE: process.env.googleGEOCODE
+  }));
+});
+
+client.config = require("./config.json");
 client.info = require("./package.json");
 
 console.log(`Starting SelfBot... (v${client.info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
 
 const Raven = require("raven");
-Raven.config(process.env.ravenDSN).install();
+Raven.config(client.config.ravenDSN).install();
 
 const sql = require("sqlite");
 sql.open("./db/deletedMessages.sqlite");
 
 const { promisify } = require("util");
-const readdir = promisify(require("fs").readdir);
+const readdir = promisify(fs.readdir);
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -50,5 +75,5 @@ require("./modules/functions.js")(client);
     }
   });
 
-  client.login(process.env.token);
+  client.login(client.config.token);
 }());

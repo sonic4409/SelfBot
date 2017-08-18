@@ -30,5 +30,5 @@ exports.conf = {
 exports.help = {
   name: "undel",
   description: "Get's the most recent message deleted and sends it.",
-  usage: "undel"
+  usage: "`undel`"
 };

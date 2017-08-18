@@ -12,5 +12,5 @@ exports.conf = {
 exports.help = {
   name: "mock",
   description: "tHaT AnNoYiNg sPoNgEbOb mOcKiNg mEmE.",
-  usage: "\`mock [text]\`"
+  usage: "`mock [text]`"
 };

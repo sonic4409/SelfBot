@@ -20,5 +20,5 @@ exports.conf = {
 exports.help = {
   name: "read",
   description: "Marks the guild or all guilds as read.",
-  usage: "\`read\` to mark the guild as read OR \`read all\` to mark ALL guilds as read"
+  usage: "`read` to mark the guild as read OR `read all` to mark ALL guilds as read"
 };

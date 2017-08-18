@@ -42,6 +42,6 @@ exports.conf = {
 
 exports.help = {
   name: "reload",
-  description: "Reloads a command that\'s been modified.",
-  usage: "\`reload [command]\`"
+  description: "Reloads a command that's been modified.",
+  usage: "`reload [command]`"
 };

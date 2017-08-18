@@ -16,5 +16,5 @@ exports.conf = {
 exports.help = {
   name: "shortcuts",
   description: "A list of shortcuts you can use",
-  usage: "\`shortcuts\`"
+  usage: "`shortcuts`"
 };

@@ -16,5 +16,5 @@ exports.conf = {
 exports.help = {
   name: "embed",
   description: "Embed any text",
-  usage: "\`embed [text]\`"
+  usage: "`embed [text]`"
 };

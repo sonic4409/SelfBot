@@ -10,5 +10,5 @@ exports.conf = {
 exports.help = {
   name: "shrug",
   description: "It's a shortcut.",
-  usage: "shrug"
+  usage: "`shrug`"
 };

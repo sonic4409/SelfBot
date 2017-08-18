@@ -16,5 +16,5 @@ exports.conf = {
 exports.help = {
   name: "covfefe",
   description: "Covfefifies a word!",
-  usage: "\`covfefe [word]\`"
+  usage: "`covfefe [word]`"
 };

@@ -29,5 +29,5 @@ exports.conf = {
 exports.help = {
   name: "eval",
   description: "Run some code",
-  usage: "\`eval [code]\`"
+  usage: "`eval [code]`"
 };

@@ -30,5 +30,5 @@ exports.conf = {
 exports.help = {
   name: "calc",
   description: "A calculator, can also be used for conversions.",
-  usage: "\`calc [input]\`. Do \`calc help\` for example usage."
+  usage: "`calc [input]`. Do `calc help` for example usage."
 };

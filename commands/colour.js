@@ -23,5 +23,5 @@ exports.conf = {
 exports.help = {
   name: "colour",
   description: "Preview the colour using its hex/decimal number",
-  usage: "\`colour [#HEXCOLOUR]\` OR \`colour [DECIMALCOLOUR]\`"
+  usage: "`colour [#HEXCOLOUR]` OR `colour [DECIMALCOLOUR]`"
 };

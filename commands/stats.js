@@ -22,5 +22,5 @@ exports.conf = {
 exports.help = {
   name: "stats",
   description: "Views bot stats.",
-  usage: "\`stats\`"
+  usage: "`stats`"
 };

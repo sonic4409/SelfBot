@@ -16,5 +16,5 @@ exports.conf = {
 exports.help = {
   name: "avatar",
   description: "Show your own avatar for some reason",
-  usage: "\`avatar\`"
+  usage: "`avatar`"
 };
