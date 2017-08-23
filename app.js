@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, version } = require("discord.js");
 
 const client = new Client();
 
@@ -20,7 +20,7 @@ client.config = require("./config.json");
 
 client.info = require("./package.json");
 
-console.log(`Starting SelfBot... (v${client.info.version})\nNode version: ${process.version}\nDiscord.js version: ${Discord.version}`);
+console.log(`Starting SelfBot... (v${client.info.version})\nNode version: ${process.version}\nDiscord.js version: ${version}`);
 
 require("raven").config(process.env.ravenDSN).install();
 
