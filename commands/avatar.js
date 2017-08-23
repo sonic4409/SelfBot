@@ -1,7 +1,7 @@
-const Discord = require("discord.js");
+const { RichEmbed } = require("discord.js");
 exports.run = async(client, msg) => {
   const url = msg.author.displayAvatarURL;
-  const embed = await new Discord.RichEmbed()
+  const embed = await new RichEmbed()
     .setColor(0x3498DB)
     .setImage(url)
     .setDescription(`${msg.author.username}'s Avatar, looks sexy amrite?`);
