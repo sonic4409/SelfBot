@@ -1,5 +1,6 @@
 # SelfBot
 [![Build Status](https://travis-ci.org/GummiWummiBear/SelfBot.svg?branch=master)](https://travis-ci.org/GummiWummiBear/SelfBot)
+[![Dependencies Status](https://david-dm.org/gummiwummibear/selfbot/status.svg)](https://david-dm.org/gummiwummibear/selfbot)
 
 Discord SelfBot made in Discord.js.
 
