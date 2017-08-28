@@ -1,5 +1,4 @@
 module.exports = (client) => {
-  global.bot = client;
   global.wait = require("util").promisify(setTimeout);
 	
   process.on("uncaughtException", (err) => {
