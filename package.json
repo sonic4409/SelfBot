@@ -21,7 +21,7 @@
     "preinstall": "npm install pm2 -g",
     "start": "pm2 start app.js --attach",
     "test": "npm run lint",
-    "lint": "eslint ."
+    "lint": "eslint . --fix"
   },
   "devDependencies": {
     "eslint": "^4.5.0"
