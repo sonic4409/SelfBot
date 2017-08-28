@@ -1,7 +1,7 @@
 {
    "token": "",
-   "prefix": "",
-   "locale": "",
+   "prefix": "=",
+   "locale": "Australia/Perth",
    "ravenDSN": "",
    "darksky": "",
    "googleCSE": "",
