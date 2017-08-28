@@ -21,7 +21,9 @@
     "preinstall": "npm install pm2 -g",
     "start": "pm2 start app.js --attach"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.5.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GummiWummiBear/SelfBot.git"
