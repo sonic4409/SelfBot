@@ -7,4 +7,8 @@ before_script:
 install:
   - npm install
 dist: trusty
+<<<<<<< HEAD
 sudo: false
+=======
+sudo: false
+>>>>>>> edacdda7438983cfb3ac0796488c63b74af6535d

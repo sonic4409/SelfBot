@@ -33,9 +33,9 @@ exports.run = async(client, msg, args, date) => {
       .get();
 
     //Get the Icons
-    const cWeatherIcon = client.weather.icons.get(response["currently"].icon);
-    const dWeatherIcon = client.weather.icons.get(response["daily"].icon);
-    const hWeatherIcon = client.weather.icons.get(response["hourly"].icon);
+    const cWeatherIcon = client.weatherIcons.get(response["currently"].icon);
+    const dWeatherIcon = client.weatherIcons.get(response["daily"].icon);
+    const hWeatherIcon = client.weatherIcons.get(response["hourly"].icon);
 
     const embed = new RichEmbed()
       .setColor(0x3498DB)

@@ -3,3 +3,4 @@ module.exports = async(client) => {
   await wait(5000); // eslint-disable-line no-undef
   console.log(`Serving ${client.users.size} users!`);
 };
+

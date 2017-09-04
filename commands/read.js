@@ -1,4 +1,4 @@
-exports.run = async(client, msg, args, date) => { // Add guild search
+exports.run = async(client, msg, args, date) => { // Add guild search later
   if (args[0] === "all") {
     await client.guilds.forEach(g => g.acknowledge());
     console.log(`[${date}] Success! Marked all guilds as read!`);

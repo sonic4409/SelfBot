@@ -10,7 +10,7 @@ module.exports = (client) => {
     return string = ([, a, b, c] = string.match`(.*?[aeiouy]+(.)).*?([aeiouy])`, a + (b = (a = "bcdfgszkvtgp") [11 - a.search(b)] || b) + c + b + c);
   };
 
-  client.weather.icons = new Map([ // So I don't define it every time I use the weather command
+  client.weatherIcons = new Map([ // So I don't define it every time I use the weather command
     ["clear-day", ":white_sun_small_cloud: :white_sun_small_cloud:"],
     ["clear-night", ":milky_way: :milky_way:"],
     ["rain", ":cloud_rain: :cloud_rain:"],

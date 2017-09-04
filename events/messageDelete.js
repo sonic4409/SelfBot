@@ -21,3 +21,4 @@ module.exports = async(client, msg) => {
     await sql.run("INSERT INTO deletedMessages (userId, channelId, msgContent) VALUES (?, ?, ?)", [msg.author.id, msg.channel.id, msg.content]);
   }
 };
+

@@ -1,6 +1,7 @@
 const moment = require("moment");
 require("moment-duration-format");
 const Discord = require("discord.js");
+
 exports.run = async(client, msg) => {
   const embed = await new Discord.RichEmbed()
     .setColor(0x7CFC00)

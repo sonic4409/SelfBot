@@ -41,6 +41,10 @@ const client = new Client({
 });
 
 /*
+<<<<<<< HEAD
+=======
+
+>>>>>>> edacdda7438983cfb3ac0796488c63b74af6535d
 fs.writeFile("./config.json", JSON.stringify({
   token: process.env.token,
   prefix: process.env.prefix,

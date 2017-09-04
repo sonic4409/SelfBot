@@ -1,11 +1,9 @@
 exports.run = async(client, msg, args, date) => {
   try {
     let evaled = await eval(args.join(" "));
-
     if (!args.length) return;
 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled, { depth: 0 });
-
     const m = `:inbox_tray: **INPUT**\`\`\`js\n${args.join(" ")}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${client.clean(evaled)}\n\`\`\``;
     if (m.length > 2000) {
       evaled = `Output was too long... ${evaled.length} characters!`;

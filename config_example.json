@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
    "token": "Discord Token",
    "prefix": "=",
@@ -8,3 +9,15 @@
    "googleAPI": "Google API Key",
    "googleGEOCODE": "Google Geocoder Key"
 }
+=======
+{
+   "token": "Discord Token",
+   "prefix": "=",
+   "locale": "Australia/Perth",
+   "ravenDSN": "Optional",
+   "darksky": "DarkSky API Token",
+   "googleCSE": "Google Custom Search Engine Key",
+   "googleAPI": "Google API Key",
+   "googleGEOCODE": "Google Geocoder Key"
+}
+>>>>>>> edacdda7438983cfb3ac0796488c63b74af6535d
