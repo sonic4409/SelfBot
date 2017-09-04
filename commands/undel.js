@@ -1,4 +1,4 @@
-const sqlite = require("sqlite");
+const sql = require("sqlite");
 const { RichEmbed } = require("discord.js");
 exports.run = async(client, msg, args, date) => {
   try {
