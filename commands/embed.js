@@ -5,6 +5,7 @@ exports.run = async(client, msg, args, date) => {
     .setColor(3447003)
     .setDescription(text);
   msg.edit({ embed });
+  console.log(`[${date}] Success!`)
 };
 
 exports.conf = {
