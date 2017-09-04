@@ -1,8 +1,8 @@
-const { get, run } = require("sqlite");
+const sqlite = require("sqlite");
 const { RichEmbed } = require("discord.js");
 exports.run = async(client, msg, args, date) => {
   try {
-    const row = await get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`);
+    const row = await sql.get(`SELECT * FROM deletedMessages WHERE channelId ='${msg.channel.id}' ORDER BY ROWID ASC LIMIT 1`);
     if (!row) {
       console.log(`[${date}] ... But could not find the row!`);
       const m = await msg.edit(":warning: Could not find the row! :warning:");
@@ -18,7 +18,7 @@ exports.run = async(client, msg, args, date) => {
     }
   } catch (err) {
     console.log(err);
-    run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
+    sql.run("CREATE TABLE IF NOT EXISTS deletedMessages (userId TEXT, channelId TEXT, msgContent TEXT)");
   }
 };
 
