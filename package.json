@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "gummibot-selfbot",
   "version": "1.5.4",
@@ -41,47 +40,3 @@
   },
   "homepage": "https://github.com/GummiWummiBear/SelfBot#readme"
 }
-=======
-{
-  "name": "gummibot-selfbot",
-  "version": "1.5.3",
-  "description": "Discord.js SelfBot",
-  "main": "app.js",
-  "dependencies": {
-    "dark-sky": "^1.0.10",
-    "discord.js": "github:hydrabolt/discord.js#11.1-dev",
-    "google-images": "^2.1.0",
-    "mathjs": "^3.12.1",
-    "moment": "^2.18.1",
-    "moment-duration-format": "^1.3.0",
-    "moment-timezone": "^0.5.13",
-    "node-geocoder": "^3.18.0",
-    "node-pre-gyp": "^0.6.36",
-    "raven": "^2.1.0",
-    "sqlite": "^2.8.0",
-    "sqlite3": "^3.1.8"
-  },
-  "scripts": {
-    "preinstall": "npm install pm2 -g",
-    "start": "pm2 start app.js --attach",
-    "test": "npm run lint",
-    "lint": "eslint . --fix"
-  },
-  "devDependencies": {
-    "eslint": "^4.5.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GummiWummiBear/SelfBot.git"
-  },
-  "author": "GummiWummiBear",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GummiWummiBear/SelfBot/issues"
-  },
-  "engines": {
-    "node": "8.4.0"
-  },
-  "homepage": "https://github.com/GummiWummiBear/SelfBot#readme"
-}
->>>>>>> edacdda7438983cfb3ac0796488c63b74af6535d
