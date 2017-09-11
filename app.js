@@ -55,7 +55,7 @@ client.aliases = new Collection();
 require("./modules/utils.js")(client);
 require("./modules/fun.js")(client);
 
-(async() => {
+(async function() {
   //Load commands into memory from "./commands"
   const commandFiles = await readdir("./commands");
   console.log(`Loading ${commandFiles.length} files!`);
