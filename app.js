@@ -40,25 +40,6 @@ const client = new Client({
   ]
 });
 
-/*
-<<<<<<< HEAD
-=======
-
->>>>>>> edacdda7438983cfb3ac0796488c63b74af6535d
-fs.writeFile("./config.json", JSON.stringify({
-  token: process.env.token,
-  prefix: process.env.prefix,
-  locale: process.env.locale,
-  ravenDSN: process.env.ravenDSN,
-  darksky: process.env.darksky,
-  googleCSE: process.env.googleCSE,
-  googleAPI: process.env.googleAPI,
-  googleGEOCODE: process.env.googleGEOCODE
-}));
-
-client.config = require("./config.json");
-*/
-
 console.log(`Starting SelfBot... (v${require("./package.json").version})\nNode version: ${process.version}\nDiscord.js version: ${version}`);
 
 require("raven").config(process.env.ravenDSN).install();
@@ -74,7 +55,7 @@ client.aliases = new Collection();
 require("./modules/utils.js")(client);
 require("./modules/fun.js")(client);
 
-(async function() {
+(async() => {
   //Load commands into memory from "./commands"
   const commandFiles = await readdir("./commands");
   console.log(`Loading ${commandFiles.length} files!`);
