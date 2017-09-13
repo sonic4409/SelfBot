@@ -101,3 +101,4 @@ require("./modules/fun.js")(client);
 
   client.login(process.env.token);
 }());
+

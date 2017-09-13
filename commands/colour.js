@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js");
+
 exports.run = async(client, msg, args, date) => {
   const colour = args.join(" ");
 

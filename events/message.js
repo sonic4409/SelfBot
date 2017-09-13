@@ -21,3 +21,4 @@ module.exports = (client, msg) => {
     cmd.run(client, msg, args, date);
   }
 };
+

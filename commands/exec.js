@@ -1,4 +1,5 @@
 const { exec } = require("child_process");
+
 exports.run = (client, msg, args, date) => {
   if (!args.length) return;
   exec(args.join(" "), async(error, stdout, stderr) => {
@@ -22,3 +23,4 @@ exports.help = {
   description: "Run code in the terminal",
   usage: "`exec [code]`"
 };
+
