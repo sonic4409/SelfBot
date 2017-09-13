@@ -1,0 +1,10 @@
+{
+   "token": "Discord Token",
+   "prefix": "=",
+   "locale": "Australia/Perth",
+   "ravenDSN": "Optional",
+   "darksky": "DarkSky API Token",
+   "googleCSE": "Google Custom Search Engine Key",
+   "googleAPI": "Google API Key",
+   "googleGEOCODE": "Google Geocoder Key"
+}
