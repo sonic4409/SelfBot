@@ -5,7 +5,7 @@
 Discord SelfBot made in Discord.js.
 
 # Setup
-Make sure you have Nodejs installed.
+Make sure you have Nodejs 8.4.0 or higher installed.
 To install dependencies, run `npm install`
 
 # Config
