@@ -7,18 +7,18 @@ exports.run = async(client, msg, args, date) => {
 
   if (search.length > 0) {
     try {
-      const response = await gClient.search(search, { safe: "off" });
+      const response = await gClient.search(search, { safe: "off" }); // owo
       if (!response) {
         console.log(`[${date}] ... but nothing was found!`);
         const m = await msg.edit("Nothing Found!");
         m.delete(2000);
       } else {
-        const embed = new RichEmbed()
+        msg.edit(new RichEmbed()
           .setColor(0x3498DB)
-          .setTitle(`Probably NSFW Image Result For: **${search}**`)
+          .setTitle(`Possibly NSFW Image Result For: **${search}**`)
           .setDescription(response[0].url)
-          .setImage(response[0].url);
-        msg.edit({ embed });
+          .setImage(response[0].url)
+        );
         console.log(`[${date}] Success!`);
       }
 
@@ -35,12 +35,12 @@ exports.run = async(client, msg, args, date) => {
 };
 
 exports.conf = {
-  enabled: true,
+  enabled: false,
   aliases: []
 };
 
 exports.help = {
   name: "lewd",
-  description: "Google Search for an image, but WITHOUT SafeSearch OWO",
+  description: "Google Search for an image, except there's no safesearch.",
   usage: "`lewd [query]`"
 };

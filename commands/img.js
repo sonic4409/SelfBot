@@ -13,12 +13,12 @@ exports.run = async(client, msg, args, date) => {
         const m = await msg.edit("Nothing Found!");
         m.delete(2000);
       } else {
-        const embed = new RichEmbed()
+        msg.edit(new RichEmbed()
           .setColor(0x3498DB)
           .setTitle(`Image Result For: **${search}**`)
           .setDescription(response[0].url)
-          .setImage(response[0].url);
-        msg.edit({ embed });
+          .setImage(response[0].url)
+        );
         console.log(`[${date}] Success!`);
       }
 

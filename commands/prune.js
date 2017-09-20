@@ -3,9 +3,7 @@ exports.run = async(client, msg, args, date) => {
 
   if (messagecount <= 100 && !isNaN(messagecount)) {
     // get the channel logs
-    const messages = await msg.channel.fetchMessages({
-      limit: 100
-    });
+    const messages = await msg.channel.fetchMessages({ limit: 100 });
 
     let msg_array = messages.array();
     // filter the message to only your own

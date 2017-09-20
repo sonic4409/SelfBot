@@ -6,11 +6,11 @@ exports.run = async(client, msg, args, date) => {
     return undefined;
   }
 
-  let command;
-  if (client.commands.has(args[0])) {
-    command = client.commands.get(args[0]);
-  } else if (client.aliases.has(args[0])) {
-    command = client.commands.get(client.aliases.get(args[0]));
+  let command = args[0];
+  if (client.commands.has(command)) {
+    command = client.commands.get(command);
+  } else if (client.aliases.has(command)) {
+    command = client.commands.get(client.aliases.get(command));
   }
   if (!command) {
     const m = await msg.edit(`The command \`${args[0]}\` doesn't seem to exist, nor is it an alias.`);

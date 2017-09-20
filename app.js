@@ -60,12 +60,22 @@ require("./modules/fun.js")(client);
   const commandFiles = await readdir("./commands");
   console.log(`Loading ${commandFiles.length} files!`);
 
-  /*
-  for(file of commandFiles) {
-    // load commands
-  }
-  */
 
+  for(let file of commandFiles) {
+    try {
+      const props = require(`./commands/${file}`);
+      console.log(`Loading Command: ${props.help.name}.`);
+      client.commands.set(props.help.name, props);
+      for(let alias of props.conf.aliases) {
+        client.aliases.set(alias, props.help.name);
+      }
+    } catch (err) {
+      console.log(`Unable to load command ${file}: \n${err}`);
+    }
+  }
+
+
+  /*
   commandFiles.forEach(file => {
     try {
       const props = require(`./commands/${file}`);
@@ -78,16 +88,24 @@ require("./modules/fun.js")(client);
       console.log(`Unable to load command ${file}: \n${err}`);
     }
   });
+  */
 
   const evtFiles = await readdir("./events/");
   console.log(`Loading a total of ${evtFiles.length} events.`);
 
-  /*
-  for(file of evtFiles) {
-    // Load events
-  }
-  */
 
+  for(let file of evtFiles) {
+    try {
+      const eventName = file.split(".")[0];
+      const event = require(`./events/${file}`);
+      client.on(eventName, event.bind(null, client));
+      delete require.cache[require.resolve(`./events/${file}`)];
+    } catch (err) {
+      console.log(`Unable to load event ${file}: \n${err}.`);
+    }
+  }
+
+  /*
   evtFiles.forEach(file => {
     try {
       const eventName = file.split(".")[0];
@@ -98,7 +116,7 @@ require("./modules/fun.js")(client);
       console.log(`Unable to load event ${file}: \n${err}.`);
     }
   });
+  */
 
   client.login(process.env.token);
 }());
-

@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 
 exports.run = (client, msg, args, date) => {
   if (!args.length) return;
-  exec(args.join(" "), async(error, stdout, stderr) => {
+  exec(args.join(" "), (error, stdout, stderr) => {
     if (error) {
       msg.edit(`It failed ecks dee:\n${stderr}`);
       console.error(`[${date}] Fail... \n${error}`);
@@ -23,4 +23,3 @@ exports.help = {
   description: "Run code in the terminal",
   usage: "`exec [code]`"
 };
-

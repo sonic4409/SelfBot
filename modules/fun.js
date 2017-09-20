@@ -1,11 +1,11 @@
 module.exports = (client) => {
   client.mockify = (text) => {
     return text.split("").map((value, index) => index % 2 ? value.toUpperCase() : value.toLowerCase()).join("");
-  }
-  
+  };
+
   client.lmgtfy = (search) => {
     return "http://lmgtfy.com/?q=" + search.replace(/ /g, "+");
-  }
+  };
 
   client.covfefify = (string) => {
     let a;

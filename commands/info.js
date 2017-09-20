@@ -1,12 +1,13 @@
 const { RichEmbed } = require("discord.js");
+
 exports.run = (client, msg) => {
-  const embed = new RichEmbed()
+  msg.edit(new RichEmbed()
     .setColor(3447003)
     .setAuthor("GummiWummiBear#4205", "https://avatars0.githubusercontent.com/u/19729435")
     .setTitle("Gummi's SelfBot")
     .setURL("httpsL://github.com/GummiWummiBear/SelfBot")
-    .setDescription("A SelfBot made in Discord.js. Made for educational purposes.");
-  msg.edit({ embed });
+    .setDescription("A SelfBot made in Discord.js. Made for educational purposes.")
+  );
 };
 
 exports.conf = {

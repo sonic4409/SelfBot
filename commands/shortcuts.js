@@ -1,11 +1,12 @@
 const { RichEmbed } = require("discord.js");
-exports.run = async(client, msg) => {
-  const embed = new RichEmbed()
+
+exports.run = (client, msg) => {
+  msg.edit(new RichEmbed()
     .setColor(3447003)
     .setAuthor(client.user.username, client.user.displayAvatarURL)
     .setTitle("Shortcuts List")
-    .setDescription("lenny\nshrug\njustright\npedo\nrave\nthefuck");
-  msg.edit({ embed });
+    .setDescription("lenny\nshrug\njustright\npedo\nrave\nthefuck") // kill me
+  );
 };
 
 exports.conf = {

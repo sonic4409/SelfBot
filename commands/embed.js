@@ -1,11 +1,11 @@
 const { RichEmbed } = require("discord.js");
-exports.run = async(client, msg, args, date) => {
-  const text = args.join(" ");
-  const embed = new RichEmbed()
+
+exports.run = (client, msg, args, date) => {
+  msg.edit(new RichEmbed()
     .setColor(3447003)
-    .setDescription(text);
-  msg.edit({ embed });
-  console.log(`[${date}] Success!`)
+    .setDescription(args.join(" "))
+  );
+  console.log(`[${date}] Success!`);
 };
 
 exports.conf = {

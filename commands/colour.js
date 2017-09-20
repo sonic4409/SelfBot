@@ -3,11 +3,11 @@ const { RichEmbed } = require("discord.js");
 exports.run = async(client, msg, args, date) => {
   const colour = args.join(" ");
 
-  if (((colour.indexOf("#") === 0) && colour.length === 7) || (!isNaN(colour) && colour.length <= 8 && colour < 16777215)) {
-    const embed = new RichEmbed()
+  if (((colour.indexOf("#") === 0) && colour.length === 7) || (!isNaN(colour) && colour.length <= 8 && colour < 16777215)) { // oof
+    msg.edit(new RichEmbed()
       .setColor(colour)
-      .setDescription(colour);
-    msg.edit({ embed });
+      .setDescription(colour)
+    );
     console.log(`[${date}] Success!`);
   } else {
     const m = await msg.edit(":warning: **Invalid Parameters!** :warning:");

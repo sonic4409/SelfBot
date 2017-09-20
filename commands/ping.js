@@ -1,5 +1,5 @@
 exports.run = async(client, msg) => {
-  const m = await msg.channel.send("HA!!! I CHALLENGE YOU TO READ THIS MESSAGE FAST ENOUGH!!! TOO SLOW!!!");
+  const m = await msg.channel.send("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
   m.edit(`Pong! Latency is ${m.createdTimestamp - msg.createdTimestamp}ms. Heartbeat Ping is ${Math.round(client.ping)}ms`);
 };
 
