@@ -1,6 +1,5 @@
 exports.run = (client, msg, args) => {
-  const result = client.lmgtfy(args.join(" "));
-  msg.edit(client.clean(result));
+  msg.edit(client.clean(client.lmgtfy(args.join(" "))));
 };
 
 exports.conf = {
