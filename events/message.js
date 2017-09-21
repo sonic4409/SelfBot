@@ -1,4 +1,4 @@
-const moment = require("moment"); // Date/time formatting
+const moment = require("moment");
 require("moment-timezone");
 
 module.exports = (client, msg) => {
@@ -11,7 +11,7 @@ module.exports = (client, msg) => {
   if (msg.author !== client.user) return;
 
   //COMMAND Handler
-  const args = msg.content.split(/\s+/g); // Oshit that's a spicy regex
+  const args = msg.content.split(/\s+/g);
   const command = args.shift().slice(process.env.prefix.length).toLowerCase();
 
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));

@@ -9,10 +9,22 @@ exports.run = async(client, msg, args, date) => {
       const m = await msg.edit(":warning: Could not find the row! :warning:");
       m.delete(3000);
     } else {
+      const member = msg.guild.members.get(row.userId);
+      if (!member) {
+        msg.edit(new RichEmbed()
+         .setColor(0xFF0000)
+         .setTitle(":recycle: Most Recent Deleted Message! The user has left the server though... :recycle:")
+         .setFooter(row.userId)
+         .setTimestamp(row.timestamp)
+         .addField("Message:", `"${row.msgContent}"`)
+        );
+        return;
+      }
       msg.edit(new RichEmbed()
         .setColor(0xFF0000)
-        .setTitle(":recycle: Most Recent Deleted Message! :recycle:")
-        .setFooter(`${msg.guild.members.get(row.userId).user.tag} (${row.userId})`, msg.guild.members.get(row.userId).user.displayAvatarURL)
+        .setTitle(":recycle: Most Recent Deleted Message! Possibly... :recycle:")
+        .setFooter(`${member.user.tag} (${row.userId})`, member.user.displayAvatarURL)
+        .setTimestamp(row.timestamp)
         .addField("Message:", `"${row.msgContent}"`)
       );
       console.log(`[${date}] Success!`);
