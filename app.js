@@ -44,8 +44,6 @@ const client = new Client({
 
 console.log(`Starting SelfBot... (v${require("./package.json").version})\nNode version: ${process.version}\nDiscord.js version: ${version}`);
 
-require("sqlite").open("./db/deletedMessages.sqlite");
-
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 
