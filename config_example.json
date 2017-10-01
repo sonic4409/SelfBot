@@ -1,5 +1,6 @@
 {
    "token": "Discord Token",
+   "deletedMessagesChannel": "Channel ID to send deleted messages to",
    "prefix": "=",
    "locale": "Australia/Perth",
    "ravenDSN": "Optional",
