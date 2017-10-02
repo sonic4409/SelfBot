@@ -14,24 +14,12 @@ exports.run = async(client, msg, args, date) => {
       const m = await msg.edit(":warning: Could not find the row! :warning:");
       m.delete(3000);
     } else {
-      const member = msg.guild.members.get(entry.userID);
-      if (!member) {
-        msg.delete();
-        channel.send(new RichEmbed()
-          .setColor(0xFF0000)
-          .setTitle(":recycle: Most Recent Deleted Message! The user has left that server though... :recycle:")
-          .setFooter(entry.userID)
-          .setTimestamp(entry.timestamp)
-          .addField("Message:", `"${entry.msgContent}"`)
-        );
-        return undefined;
-      }
-
+      const u = client.users.get(entry.userID);
       msg.delete();
       channel.send(new RichEmbed()
         .setColor(0xFF0000)
-        .setTitle(":recycle: Most Recent Deleted Message! :recycle:")
-        .setFooter(`${member.user.tag} (${entry.userId})`, member.user.displayAvatarURL)
+        .setTitle(`:recycle: Most Recent Deleted Message in Guild **${msg.guild.name}** in **#${msg.channel.name}**! :recycle:`)
+        .setFooter(`${String(u.tag)} (${entry.userID})`, String(u.displayAvatarURL))
         .setTimestamp(entry.timestamp)
         .addField("Message:", `"${entry.msgContent}"`)
       );
