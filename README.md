@@ -10,7 +10,9 @@ To install dependencies, run `npm install`
 
 # Config
 ~~Rename  `config_example.json` to `config.json` and fill out the necessary fields.~~
+
 ~~The bot currently is designed for Heroku so add environment variables according to the contents of `config_example.json`.~~
+
 I'm now hosting the bot in glitch.com and therefore still using environment variables, so put your stuff in `.env`
 
 # Running
