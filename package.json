@@ -1,11 +1,12 @@
 {
   "name": "gummibot-selfbot",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Discord.js SelfBot",
   "main": "app.js",
   "dependencies": {
     "dark-sky": "^1.1.2",
     "discord.js": "^11.2.1",
+    "express": "^4.16.1",
     "google-images": "^2.1.0",
     "mathjs": "^3.16.3",
     "moment": "^2.18.1",
@@ -14,6 +15,7 @@
     "node-geocoder": "^3.20.0",
     "node-pre-gyp": "^0.6.38",
     "pm2": "^2.7.1"
+
   },
   "scripts": {
     "start": "pm2 start app.js --attach -f",
