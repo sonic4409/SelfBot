@@ -5,6 +5,7 @@ package-lock.json
 npm-debug.log
 config.json
 .env
+.glitch-assets
 
 # OS generated files #
 ######################

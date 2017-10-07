@@ -11,17 +11,17 @@ exports.run = async(client, msg, args, date) => {
     const entry = client.deletedMessages.get(msg.channel.id);
     if (!entry) {
       console.log(`[${date}] ... But could not find the entry!`);
-      const m = await msg.edit(":warning: Could not find the row! :warning:");
+      const m = await msg.edit(":warning: Couldn't find the message! :warning:");
       m.delete(3000);
     } else {
       const u = client.users.get(entry.userID);
       msg.delete();
       channel.send(new RichEmbed()
         .setColor(0xFF0000)
-        .setTitle(`:recycle: Most Recent Deleted Message in Guild **${msg.guild.name}** in **#${msg.channel.name}**! :recycle:`)
+        .setTitle(`:recycle: Most Recent Deleted Message in Guild __${msg.guild.name}__ in __#${msg.channel.name}__! :recycle:`)
         .setFooter(`${String(u.tag)} (${entry.userID})`, String(u.displayAvatarURL))
         .setTimestamp(entry.timestamp)
-        .addField("Message:", `"${entry.msgContent}"`)
+        .addField("Message:", entry.msgContent)
       );
       console.log(`[${date}] Success!`);
     }
