@@ -1,6 +1,7 @@
 # Thing #
 /node_modules
 /.vscode
+/.pm2
 package-lock.json
 npm-debug.log
 config.json
