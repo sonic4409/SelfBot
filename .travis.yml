@@ -3,7 +3,7 @@ node_js:
   - '8'
 os: linux
 before_script:
-  - npm install -g pm2
+  - npm install pm2
 install:
   - npm install
 dist: trusty
