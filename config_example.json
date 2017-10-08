@@ -3,7 +3,6 @@
    "deletedMessagesChannel": "Channel ID to send deleted messages to",
    "prefix": "=",
    "locale": "Australia/Perth",
-   "ravenDSN": "Optional",
    "darksky": "DarkSky API Token",
    "googleCSE": "Google Custom Search Engine Key",
    "googleAPI": "Google API Key",
