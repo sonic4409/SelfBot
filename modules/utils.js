@@ -20,8 +20,13 @@ module.exports = (client) => {
     else return text;
   };
 
-  client.haste = (text) => {
-    require("snekfetch").post("https://hastebin.com/documents").send(text)
-      .then(haste => { return `https://hastebin.com/${haste.body.key}`; });
+  client.haste = async (text) => {
+    try {
+      const haste = await require("snekfetch").post("https://hastebin.com/documents").send(text);
+      return `https://hastebin.com/${haste.body.key}`;
+    } catch (err) {
+      return "... oh, looks like hastebin wasn't able to upload your text ecks dee";
+    }
+
   };
 };

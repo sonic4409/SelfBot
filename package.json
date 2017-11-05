@@ -1,11 +1,12 @@
 {
   "name": "gummibot-selfbot",
-  "version": "1.10.2",
+  "version": "1.11.2",
   "description": "Discord.js SelfBot",
   "main": "app.js",
   "dependencies": {
     "dark-sky": "^1.1.2",
     "discord.js": "^11.2.1",
+    "dotenv": "^4.0.0",
     "google-images": "^2.1.0",
     "mathjs": "^3.16.5",
     "moment": "^2.19.1",
