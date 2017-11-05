@@ -21,6 +21,9 @@ module.exports = (client) => {
   };
 
   client.haste = (text) => {
-    return require("snekfetch").post("https://hastebin.com/documents").send(text).then(haste => `https://hastebin.com/${haste.body.key}`);
+    require("snekfetch").post("https://hastebin.com/documents").send(text)
+      .then(haste => { return `https://hastebin.com/${haste.body.key}` });
+  }
+
   };
 };
