@@ -7,8 +7,7 @@ exports.run = async(client, msg, args, date) => { // Use ternary operators next 
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled, { depth: 0 });
     let m = `:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\n${client.clean(evaled)}\n\`\`\``;
     if (m.length > 2000) {
-      m = `:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\nOutput was too long... ${evaled.length} characters!\n\`\`\``; // heck
-      console.log(`[${date}] LONG OUTPUT\n\n${evaled.stack}`);
+      m = `:inbox_tray: **INPUT**\`\`\`js\n${code}\n\`\`\`\n:outbox_tray: **OUTPUT**\n\`\`\`js\nOutput was too long... ${evaled.length} characters!\nOutput uploaded to ${client.haste(evaled)}\n\`\`\``;
     }
 
     msg.edit(m);

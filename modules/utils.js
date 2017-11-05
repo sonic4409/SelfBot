@@ -11,12 +11,17 @@ module.exports = (client) => {
   });
 
   client.clean = (text) => {
-    if (typeof(text) === "string")
+    if (typeof (text) === "string")
       return text
         .replace(client.token, "Nope")
         .replace(client.user.email, "Nice try")
         .replace(/`/g, "`" + String.fromCharCode(8203))
         .replace(/@/g, "@" + String.fromCharCode(8203));
     else return text;
+  };
+
+  client.haste = async(text) => {
+    const haste = await require("snekfetch").post("https://hastebin.com/documents").send(text);
+    return `https://hastebin.com/${haste.body.key}`;
   };
 };
