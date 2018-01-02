@@ -1,3 +1,5 @@
+# This project is now dead bceause I'm pretty much done with it and also because Discord found me out for using it
+
 # SelfBot
 [![Build Status](https://travis-ci.org/GummiWummiBear/SelfBot.svg?branch=master)](https://travis-ci.org/GummiWummiBear/SelfBot)
 [![Dependencies Status](https://david-dm.org/gummiwummibear/selfbot/status.svg)](https://david-dm.org/gummiwummibear/selfbot)
